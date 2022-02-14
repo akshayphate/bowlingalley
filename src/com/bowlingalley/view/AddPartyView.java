@@ -248,7 +248,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 				party.add(newPatron.getNick());
 				partyList.setListData(party);
 			} else {
-				System.err.println( "A com.bowlingalley.model.Bowler with that name already exists." );
+				System.err.println( "A Bowler with that name already exists." );
 			}
 		} catch (Exception e2) {
 			System.err.println("File I/O Error");
@@ -256,7 +256,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	}
 
 /**
- * Accessor for com.bowlingalley.model.Party
+ * Accessor for Party
  */
 
 	public Vector getParty() {

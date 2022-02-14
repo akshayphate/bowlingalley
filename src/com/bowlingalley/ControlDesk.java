@@ -9,7 +9,7 @@ package com.bowlingalley;/* ControlDesk.java
  * 		ControlDesk now runs its own thread and polls for free lanes to assign queue members to
  * 		
  * 		Revision 1.12  2003/02/02 20:46:13  ???
- * 		Added " 's com.bowlingalley.model.Party" to party names.
+ * 		Added " 's Party" to party names.
  * 		
  * 		Revision 1.11  2003/02/02 20:43:25  ???
  * 		misc cleanup
@@ -99,11 +99,11 @@ public class ControlDesk extends Thread {
 		
 
     /**
-     * Retrieves a matching com.bowlingalley.model.Bowler from the bowler database.
+     * Retrieves a matching Bowler from the bowler database.
      *
-     * @param nickName	The NickName of the com.bowlingalley.model.Bowler
+     * @param nickName	The NickName of the Bowler
      *
-     * @return a com.bowlingalley.model.Bowler object.
+     * @return a Bowler object.
      *
      */
 
@@ -181,7 +181,7 @@ public class ControlDesk extends Thread {
 			String nextParty =
 				((Bowler) ((Vector) ((Party) partyQueue.asVector().get( i ) ).getMembers())
 					.get(0))
-					.getNickName() + "'s com.bowlingalley.model.Party";
+					.getNickName() + "'s Party";
 			displayPartyQueue.addElement(nextParty);
 		}
 		return displayPartyQueue;

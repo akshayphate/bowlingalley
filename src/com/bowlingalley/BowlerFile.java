@@ -15,7 +15,7 @@ package com.bowlingalley;/* BowlerFile.java
  */
 
 /**
- * Class for interfacing with com.bowlingalley.model.Bowler database
+ * Class for interfacing with Bowler database
  *
  */
 
@@ -62,11 +62,11 @@ public class BowlerFile {
 	}
 
     /**
-     * Stores a com.bowlingalley.model.Bowler in the database
+     * Stores a Bowler in the database
      *
-     * @param nickName	the NickName of the com.bowlingalley.model.Bowler
-     * @param fullName	the FullName of the com.bowlingalley.model.Bowler
-     * @param email	the E-mail Address of the com.bowlingalley.model.Bowler
+     * @param nickName	the NickName of the Bowler
+     * @param fullName	the FullName of the Bowler
+     * @param email	the E-mail Address of the Bowler
      *
      */
 
