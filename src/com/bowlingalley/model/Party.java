@@ -1,5 +1,5 @@
 package com.bowlingalley.model;/*
- * com.bowlingalley.model.Party.java
+ * Party.java
  *
  * Version:
  *   $Id$

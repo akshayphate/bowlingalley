@@ -1,5 +1,5 @@
 package com.bowlingalley.model;/*
- * com.bowlingalley.model.Bowler.java
+ * Bowler.java
  *
  * Version:
  *     $Id$
@@ -13,7 +13,7 @@ package com.bowlingalley.model;/*
  *     *** empty log message ***
  *
  *     Revision 1.1  2003/01/12 19:09:12  ???
- *     Adding com.bowlingalley.model.Party, Lane, com.bowlingalley.model.Bowler, and Alley.
+ *     Adding Party, Lane, Bowler, and Alley.
  *
  */
 

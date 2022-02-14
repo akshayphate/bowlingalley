@@ -95,10 +95,10 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 			laneStatusPanel.add(lanePanel);
 		}
 
-		// com.bowlingalley.model.Party Queue Panel
+		// Party Queue Panel
 		JPanel partyPanel = new JPanel();
 		partyPanel.setLayout(new FlowLayout());
-		partyPanel.setBorder(new TitledBorder("com.bowlingalley.model.Party Queue"));
+		partyPanel.setBorder(new TitledBorder("Party Queue"));
 
 		Vector empty = new Vector();
 		empty.add("(Empty)");
