@@ -48,7 +48,6 @@ public class ScoreReport {
 		}
 		content += "\n\n";
 		content += "Thank you for your continuing patronage.";
-
 	}
 
 	public void sendEmail(String recipient) {
@@ -97,7 +96,6 @@ public class ScoreReport {
 				System.out.println(e);
 			}
 		}
-
 	}
 
 	public void sendln(BufferedReader in, BufferedWriter out, String s) {
@@ -121,6 +119,4 @@ public class ScoreReport {
 			e.printStackTrace();
 		}
 	}
-
-
 }

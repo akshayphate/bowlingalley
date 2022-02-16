@@ -9,11 +9,6 @@ package com.bowlingalley; /**
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-
-import java.util.*;
-import java.text.*;
 
 public class EndGamePrompt implements ActionListener {
 
@@ -27,7 +22,7 @@ public class EndGamePrompt implements ActionListener {
 	public EndGamePrompt( String partyName ) {
 
 		result =0;
-		
+
 		win = new JFrame("Another Game for " + partyName + "?" );
 		win.getContentPane().setLayout(new BorderLayout());
 		((JPanel) win.getContentPane()).setOpaque(false);
@@ -36,39 +31,48 @@ public class EndGamePrompt implements ActionListener {
 		colPanel.setLayout(new GridLayout( 2, 1 ));
 
 		// Label Panel
-		JPanel labelPanel = new JPanel();
-		labelPanel.setLayout(new FlowLayout());
-		
-		JLabel message = new JLabel( "Party " + partyName
-			+ " has finished bowling.\nWould they like to bowl another game?" );
-
-		labelPanel.add( message );
+		createLabelPanel(partyName, colPanel);
 
 		// Button Panel
+		createButtonPanel(colPanel);
+
+		displayWindow(colPanel);
+	}
+
+	private void createButtonPanel(JPanel colPanel) {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(1, 2));
 
-		Insets buttonMargin = new Insets(4, 4, 4, 4);
-
-		yesButton = new JButton("Yes");
-		JPanel yesButtonPanel = new JPanel();
-		yesButtonPanel.setLayout(new FlowLayout());
-		yesButton.addActionListener(this);
-		yesButtonPanel.add(yesButton);
-
-		noButton = new JButton("No");
-		JPanel noButtonPanel = new JPanel();
-		noButtonPanel.setLayout(new FlowLayout());
-		noButton.addActionListener(this);
-		noButtonPanel.add(noButton);
+		yesButton = createButton("Yes");
+		noButton = createButton("No");
 
 		buttonPanel.add(yesButton);
 		buttonPanel.add(noButton);
 
-		// Clean up main panel
-		colPanel.add(labelPanel);
 		colPanel.add(buttonPanel);
+	}
 
+	private JButton createButton(String buttonName) {
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new FlowLayout());
+		JButton jButton = new JButton(buttonName);
+		jButton.addActionListener(this);
+		buttonPanel.add(jButton);
+		return jButton;
+	}
+
+	private void createLabelPanel(String partyName, JPanel colPanel) {
+		JPanel labelPanel = new JPanel();
+		labelPanel.setLayout(new FlowLayout());
+
+		JLabel message = new JLabel( "Party " + partyName
+				+ " has finished bowling.\nWould they like to bowl another game?" );
+
+		labelPanel.add( message );
+		colPanel.add(labelPanel);
+	}
+
+	private void displayWindow(JPanel colPanel) {
 		win.getContentPane().add("Center", colPanel);
 
 		win.pack();
@@ -76,20 +80,18 @@ public class EndGamePrompt implements ActionListener {
 		// Center Window on Screen
 		Dimension screenSize = (Toolkit.getDefaultToolkit()).getScreenSize();
 		win.setLocation(
-			((screenSize.width) / 2) - ((win.getSize().width) / 2),
-			((screenSize.height) / 2) - ((win.getSize().height) / 2));
+				((screenSize.width) / 2) - ((win.getSize().width) / 2),
+				((screenSize.height) / 2) - ((win.getSize().height) / 2));
 		win.show();
-
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(yesButton)) {		
+		if (e.getSource().equals(yesButton)) {
 			result=1;
 		}
-		if (e.getSource().equals(noButton)) {		
+		if (e.getSource().equals(noButton)) {
 			result=2;
 		}
-
 	}
 
 	public int getResult() {
@@ -100,12 +102,11 @@ public class EndGamePrompt implements ActionListener {
 				System.err.println( "Interrupted" );
 			}
 		}
-		return result;	
+		return result;
 	}
-	
+
 	public void distroy() {
 		win.hide();
 	}
-	
-}
 
+}
