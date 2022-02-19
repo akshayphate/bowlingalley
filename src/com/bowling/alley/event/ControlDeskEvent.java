@@ -1,11 +1,12 @@
-package com.bowling.alley.event;/* ControlDeskEvent.java
+package com.bowling.alley.event;
+/* ControlDeskEvent.java
  *
  *  Version:
  *  		$Id$
- * 
+ *
  *  Revisions:
  * 		$Log$
- * 
+ *
  */
 
 /**
@@ -15,31 +16,34 @@ package com.bowling.alley.event;/* ControlDeskEvent.java
 
 import java.util.*;
 
-public class ControlDeskEvent {
+public class ControlDeskEvent
+{
 
 	/** A representation of the wait queue, containing party names */
-	private Vector partyQueue;
+	private Vector<String> partyQueue;
 
-    /**
-     * Contstructor for the ControlDeskEvent
-     *
-     * @param partyQueue	a Vector of Strings containing the names of the parties in the wait queue
-     *
-     */
+	/**
+	 * Contstructor for the ControlDeskEvent
+	 *
+	 * @param partyQueue	a Vector of Strings containing the names of the parties in the wait queue
+	 *
+	 */
 
-	public ControlDeskEvent( Vector partyQueue ) {
+	public ControlDeskEvent(Vector<String> partyQueue)
+	{
 		this.partyQueue = partyQueue;
 	}
 
-    /**
-     * Accessor for partyQueue
-     * @param key the key of the vertex being looked for.
-     *
-     * @return a Vector of Strings representing the names of the parties in the wait queue
-     *
-     */
+	/**
+	 * Accessor for partyQueue
+	 * @param key the key of the vertex being looked for.
+	 *
+	 * @return a Vector of Strings representing the names of the parties in the wait queue
+	 *
+	 */
 
-	public Vector getPartyQueue() {
+	public Vector<String> getPartyQueue()
+	{
 		return partyQueue;
 	}
 
