@@ -1,4 +1,5 @@
-package com.bowling.alley.event;/*  $Id$
+package com.bowling.alley.event;
+/*  $Id$
  *
  *  Revisions:
  *    $Log: PinsetterEvent.java,v $
@@ -12,7 +13,8 @@ package com.bowling.alley.event;/*  $Id$
  *
  */
 
-public class PinsetterEvent {
+public class PinsetterEvent
+{
 
 	private boolean[] pinsStillStanding;
 	private boolean foulCommited;
@@ -20,63 +22,71 @@ public class PinsetterEvent {
 	private int pinsDownThisThrow;
 
 	/** PinsetterEvent()
-	 * 
+	 *
 	 * creates a new pinsetter event
-	 * 
+	 *
 	 * @pre none
 	 * @post the object has been initialized
 	 */
-	public PinsetterEvent(boolean[] ps, boolean foul, int tn, int pinsDownThisThrow) {
+	public PinsetterEvent(boolean[] ps, boolean foul, int tn, int pinsDownThisThrow)
+	{
 		pinsStillStanding = new boolean[10];
 
-		for (int i=0; i <= 9; i++) {
+		for (int i=0; i <= 9; i++)
+		{
 			pinsStillStanding[i] = ps[i];
 		}
-		
+
 		foulCommited = foul;
 		throwNumber = tn;
 		this.pinsDownThisThrow = pinsDownThisThrow;
 	}
 
 	/** pinKnockedDown()
-	 * 
+	 *
 	 * check if a pin has been knocked down
-	 * 
+	 *
 	 * @return true if pin [i] has been knocked down
 	 */
-	public boolean pinKnockedDown(int i) {
+	public boolean pinKnockedDown(int i)
+	{
 		return !pinsStillStanding[i];
 	}
-	
+
 	/** pinsDownOnThisThrow()
-	 * 
+	 *
 	 * @return the number of pins knocked down assosicated with this event
 	 */
-	public int pinsDownOnThisThrow() {
+	public int pinsDownOnThisThrow()
+	{
 		return pinsDownThisThrow;
 	}
-	
+
 	/** totalPinsDown()
-	 * 
+	 *
 	 * @return the total number of pins down for pinsetter that generated the event
 	 */
-	public int totalPinsDown() {
+	public int totalPinsDown()
+	{
 		int count = 0;
-		
-		for (int i=0; i <= 9; i++) {
-			if (pinKnockedDown(i)) {
+
+		for (int i=0; i <= 9; i++)
+		{
+			if (pinKnockedDown(i))
+			{
 				count++;
 			}
 		}
-		
+
 		return count;
 	}
-	
+
 	/** isFoulCommited()
-	 * 
+	 *
 	 * @return true if a foul was commited on the lane, false otherwise
 	 */
-	public boolean isFoulCommited() {
+	public boolean isFoulCommited()
+	{
 		return foulCommited;
 	}
 
@@ -84,8 +94,9 @@ public class PinsetterEvent {
 	 *
 	 * @return current number of throws taken on this lane after last reset
 	 */
-	public int getThrowNumber() {
+	public int getThrowNumber()
+	{
 		return throwNumber;
 	}
-};
+}
 
