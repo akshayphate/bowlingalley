@@ -1,11 +1,12 @@
-package com.bowling.alley.model;/*
+package com.bowling.alley.model;
+/*
  * Bowler.java
  *
  * Version:
  *     $Id$
  *
  * Revisions:
- *     $Log: com.bowlingalley.model.Bowler.java,v $
+ *     $Log: Bowler.java,v $
  *     Revision 1.3  2003/01/15 02:57:40  ???
  *     Added accessors and and equals() method
  *
@@ -24,45 +25,45 @@ package com.bowling.alley.model;/*
 
 public class Bowler {
 
-    private String fullName;
-    private String nickName;
-    private String email;
+	private String fullName;
+	private String nickName;
+	private String email;
 
-    public Bowler( String nick, String full, String mail ) {
-	nickName = nick;
-	fullName = full;
-  	email = mail;
-    }
+	public Bowler( String nick, String full, String mail ) {
+		nickName = nick;
+		fullName = full;
+		email = mail;
+	}
 
 
-    public String getNickName() {
+	public String getNickName() {
 
-        return nickName;  
+		return nickName;
 
-    }
+	}
 
 	public String getFullName ( ) {
-			return fullName;
+		return fullName;
 	}
-	
+
 	public String getNick ( ) {
 		return nickName;
 	}
 
 	public String getEmail ( ) {
-		return email;	
+		return email;
 	}
-	
+
 	public boolean equals ( Bowler b) {
 		boolean retval = true;
 		if ( !(nickName.equals(b.getNickName())) ) {
-				retval = false;
+			retval = false;
 		}
 		if ( !(fullName.equals(b.getFullName())) ) {
-				retval = false;
-		}	
+			retval = false;
+		}
 		if ( !(email.equals(b.getEmail())) ) {
-				retval = false;
+			retval = false;
 		}
 		return retval;
 	}

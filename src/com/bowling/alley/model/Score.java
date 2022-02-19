@@ -1,5 +1,4 @@
 package com.bowling.alley.model;
-
 /**
  *
  * To change this generated comment edit the template variable "typecomment":
@@ -10,24 +9,24 @@ package com.bowling.alley.model;
 
 public class Score {
 
-    private String nick;
-    private String date;
-    private String score;
+	private String nick;
+	private String date;
+	private String score;
 
-    public Score( String nick, String date, String score ) {
+	public Score( String nick, String date, String score ) {
 		this.nick=nick;
 		this.date=date;
 		this.score=score;
-    }
+	}
 
-    public String getNickName() {
-        return nick;  
-    }
+	public String getNickName() {
+		return nick;
+	}
 
 	public String getDate() {
 		return date;
 	}
-	
+
 	public String getScore() {
 		return score;
 	}
