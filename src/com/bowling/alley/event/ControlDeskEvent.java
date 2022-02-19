@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;/* ControlDeskEvent.java
+package com.bowling.alley.event;/* ControlDeskEvent.java
  *
  *  Version:
  *  		$Id$

@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;/*
+package com.bowling.alley.view;/*
  * PinSetterView/.java
  *
  * Version:
@@ -12,6 +12,9 @@ package com.bowlingalley.alley;/*
  *  constructs a prototype PinSetter GUI
  *
  */
+
+import com.bowling.alley.event.PinsetterEvent;
+import com.bowling.alley.observer.PinsetterObserver;
 
 import java.awt.*;
 import javax.swing.*;

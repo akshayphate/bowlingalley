@@ -26,4 +26,4 @@ hs_err_pid*
 /out/*
 .idea/
 
-/SCOREHISTORY.DAT
+/src/SCOREHISTORY.DAT

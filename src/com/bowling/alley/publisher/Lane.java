@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;
+package com.bowling.alley.publisher;
 /* $Id$
  *
  * Revisions:
@@ -131,15 +131,23 @@ package com.bowlingalley.alley;
  * 
  */
 
-import com.bowlingalley.alley.model.Bowler;
-import com.bowlingalley.alley.model.Party;
+import com.bowling.alley.event.LaneEvent;
+import com.bowling.alley.event.PinsetterEvent;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Party;
+import com.bowling.alley.observer.LaneObserver;
+import com.bowling.alley.observer.PinsetterObserver;
+import com.bowling.alley.util.ScoreHistoryFile;
+import com.bowling.alley.util.ScoreReport;
+import com.bowling.alley.view.EndGamePrompt;
+import com.bowling.alley.view.EndGameReport;
 
 import java.util.Vector;
 import java.util.Iterator;
 import java.util.HashMap;
 import java.util.Date;
 
-public class Lane extends Thread implements PinsetterObserver {	
+public class Lane extends Thread implements PinsetterObserver {
 	private Party party;
 	private Pinsetter setter;
 	private HashMap scores;

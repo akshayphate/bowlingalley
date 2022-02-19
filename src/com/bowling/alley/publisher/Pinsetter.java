@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;/*
+package com.bowling.alley.publisher;/*
  * Pinsetter.java
  *
  * Version:
@@ -69,6 +69,9 @@ package com.bowlingalley.alley;/*
  * Class to represent the pinsetter
  *
  */
+
+import com.bowling.alley.event.PinsetterEvent;
+import com.bowling.alley.observer.PinsetterObserver;
 
 import java.util.*;
 

@@ -1,10 +1,12 @@
-package com.bowlingalley.alley; /**
+package com.bowling.alley.util; /**
  *
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
  */
+
+import com.bowling.alley.model.Score;
 
 import java.util.*;
 import java.io.*;

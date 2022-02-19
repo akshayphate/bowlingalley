@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;/*  $Id$
+package com.bowling.alley.event;/*  $Id$
  *
  *  Revisions:
  *    $Log: LaneEvent.java,v $
@@ -23,8 +23,8 @@ package com.bowlingalley.alley;/*  $Id$
  *
  */
 
-import com.bowlingalley.alley.model.Bowler;
-import com.bowlingalley.alley.model.Party;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Party;
 
 import java.util.HashMap;
 

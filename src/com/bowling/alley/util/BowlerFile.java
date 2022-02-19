@@ -19,7 +19,7 @@ package com.bowling.alley.util;/* BowlerFile.java
  *
  */
 
-import com.bowlingalley.alley.model.Bowler;
+import com.bowling.alley.model.Bowler;
 
 import java.util.*;
 import java.io.*;

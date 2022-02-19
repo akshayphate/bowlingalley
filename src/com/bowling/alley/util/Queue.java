@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;/* Queue.java
+package com.bowling.alley.util;/* Queue.java
  *
  *  Version
  *  $Id$

@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;/* $Id$
+package com.bowling.alley.observer;/* $Id$
  *
  * Revisions:
  *   $Log: LaneObserver.java,v $
@@ -10,6 +10,8 @@ package com.bowlingalley.alley;/* $Id$
  *
  *
  */
+
+import com.bowling.alley.event.LaneEvent;
 
 public interface LaneObserver {
 	public void receiveLaneEvent(LaneEvent le);

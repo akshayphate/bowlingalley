@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;/* ControlDeskView.java
+package com.bowling.alley.view;/* ControlDeskView.java
  *
  *  Version:
  *			$Id$
@@ -13,8 +13,11 @@ package com.bowlingalley.alley;/* ControlDeskView.java
  *
  */
 
+import com.bowling.alley.event.ControlDeskEvent;
+import com.bowling.alley.observer.ControlDeskObserver;
 import com.bowling.alley.publisher.ControlDesk;
-import com.bowlingalley.alley.view.AddPartyView;
+import com.bowling.alley.publisher.Lane;
+import com.bowling.alley.publisher.Pinsetter;
 
 import java.awt.*;
 import java.awt.event.*;

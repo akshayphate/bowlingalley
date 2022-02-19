@@ -1,6 +1,8 @@
-package com.bowlingalley.alley;
+package com.bowling.alley;
 
+import com.bowling.alley.model.Alley;
 import com.bowling.alley.publisher.ControlDesk;
+import com.bowling.alley.view.ControlDeskView;
 
 public class Drive {
 

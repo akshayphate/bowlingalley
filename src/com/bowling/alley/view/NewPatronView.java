@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;/* com.bowlingalley.view.AddPartyView.java
+package com.bowling.alley.view;/* com.bowlingalley.view.AddPartyView.java
  *
  *  Version
  *  $Id$
@@ -16,7 +16,7 @@ package com.bowlingalley.alley;/* com.bowlingalley.view.AddPartyView.java
  *
  */
 
-import com.bowlingalley.alley.view.AddPartyView;
+import com.bowling.alley.view.AddPartyView;
 
 import java.awt.*;
 import java.awt.event.*;

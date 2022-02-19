@@ -1,4 +1,4 @@
-package com.bowlingalley.alley.model;/*
+package com.bowling.alley.model;/*
  * Party.java
  *
  * Version:

@@ -1,11 +1,14 @@
-package com.bowlingalley.alley; /**
+package com.bowling.alley.util; /**
  * 
  * SMTP implementation based on code by R�al Gagnon mailto:real@rgagnon.com
  * 
  */
 
 
-import com.bowlingalley.alley.model.Bowler;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Score;
+import com.bowling.alley.util.PrintableText;
+import com.bowling.alley.util.ScoreHistoryFile;
 
 import java.io.*;
 import java.util.Vector;

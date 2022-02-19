@@ -1,10 +1,13 @@
-package com.bowlingalley.alley;/*
+package com.bowling.alley.view;/*
  *  constructs a prototype Lane View
  *
  */
 
-import com.bowlingalley.alley.model.Bowler;
-import com.bowlingalley.alley.model.Party;
+import com.bowling.alley.event.LaneEvent;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Party;
+import com.bowling.alley.observer.LaneObserver;
+import com.bowling.alley.publisher.Lane;
 
 import java.awt.*;
 import java.awt.event.*;

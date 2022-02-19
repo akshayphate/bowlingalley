@@ -40,11 +40,12 @@ package com.bowling.alley.publisher;/* ControlDesk.java
  *
  */
 
+import com.bowling.alley.event.ControlDeskEvent;
+import com.bowling.alley.observer.ControlDeskObserver;
 import com.bowling.alley.util.BowlerFile;
-import com.bowlingalley.alley.*;
-import com.bowlingalley.alley.Queue;
-import com.bowlingalley.alley.model.Bowler;
-import com.bowlingalley.alley.model.Party;
+import com.bowling.alley.util.Queue;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Party;
 
 import java.util.*;
 import java.io.*;
@@ -55,7 +56,7 @@ public class ControlDesk extends Thread {
 	private HashSet lanes;
 
 	/** The party wait queue */
-	private com.bowlingalley.alley.Queue partyQueue;
+	private Queue partyQueue;
 
 	/** The number of lanes represented */
 	private int numLanes;

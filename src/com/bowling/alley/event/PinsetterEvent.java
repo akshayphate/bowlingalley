@@ -1,4 +1,4 @@
-package com.bowlingalley.alley;/*  $Id$
+package com.bowling.alley.event;/*  $Id$
  *
  *  Revisions:
  *    $Log: PinsetterEvent.java,v $

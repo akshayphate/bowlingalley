@@ -1,4 +1,4 @@
-package com.bowlingalley.alley.view;/* com.bowlingalley.view.AddPartyView.java
+package com.bowling.alley.view;/* com.bowlingalley.view.AddPartyView.java
  *
  *  Version:
  * 		 $Id$
@@ -26,9 +26,7 @@ package com.bowlingalley.alley.view;/* com.bowlingalley.view.AddPartyView.java
  */
 
 import com.bowling.alley.util.BowlerFile;
-import com.bowlingalley.alley.ControlDeskView;
-import com.bowlingalley.alley.NewPatronView;
-import com.bowlingalley.alley.model.Bowler;
+import com.bowling.alley.model.Bowler;
 
 import java.awt.*;
 import java.awt.event.*;

@@ -1,4 +1,4 @@
-package com.bowlingalley.alley; /**
+package com.bowling.alley.view; /**
  *
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.
@@ -6,8 +6,8 @@ package com.bowlingalley.alley; /**
  * Window>Preferences>Java>Code Generation.
  */
 
-import com.bowlingalley.alley.model.Bowler;
-import com.bowlingalley.alley.model.Party;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Party;
 
 import java.awt.*;
 import java.awt.event.*;

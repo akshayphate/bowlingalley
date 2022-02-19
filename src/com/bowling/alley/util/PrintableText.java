@@ -1,4 +1,4 @@
-package com.bowlingalley.alley; /**
+package com.bowling.alley.util; /**
  *
  */
 
