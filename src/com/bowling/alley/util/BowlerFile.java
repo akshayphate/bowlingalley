@@ -30,7 +30,7 @@ public class BowlerFile
 {
 
 	/** The location of the bowelr database */
-	private static String BOWLER_DAT = "C:\\Users\\pawar\\eclipse-workspace\\BowlingAlley\\src\\BOWLERS.DAT";
+	private static String BOWLER_DAT = "/home/akshay/IdeaProjects/bowlingalley/src/BOWLERS.DAT";
 
 	/**
 	 * Retrieves bowler information from the database and returns a Bowler objects with populated fields.
