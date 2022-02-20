@@ -144,10 +144,7 @@ import com.bowling.alley.util.ScoreReport;
 import com.bowling.alley.view.EndGamePrompt;
 import com.bowling.alley.view.EndGameReport;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
 public class Lane extends Thread implements PinsetterObserver {
     private final CalculateScore calculateScore = new CalculateScore(this);
@@ -298,10 +295,9 @@ public class Lane extends Thread implements PinsetterObserver {
                 Bowler thisBowler = (Bowler) scoreIt.next();
                 ScoreReport sr = new ScoreReport(thisBowler, finalScores[myIndex++], gameNumber);
                 sr.sendEmail(thisBowler.getEmail());
-                Iterator<String> printIt = printVector.iterator();
 
-                while (printIt.hasNext()) {
-                    if (thisBowler.getNick() == (String) printIt.next()) {
+                for (String s : printVector) {
+                    if (Objects.equals(thisBowler.getNick(), s)) {
                         System.out.println("Printing " + thisBowler.getNick());
                         sr.sendPrintout();
                     }
@@ -379,16 +375,15 @@ public class Lane extends Thread implements PinsetterObserver {
      * @post scoring system is initialized
      */
     private void resetScores() {
-        Iterator<Bowler> bowlIt = party.getMembers().iterator();
 
-        while (bowlIt.hasNext()) {
+        for (Bowler bowler : party.getMembers()) {
             int[] toPut = new int[25];
 
             for (int i = 0; i != 25; i++) {
                 toPut[i] = -1;
             }
 
-            scores.put(bowlIt.next(), toPut);
+            scores.put(bowler, toPut);
         }
 
         gameFinished = false;
@@ -447,8 +442,7 @@ public class Lane extends Thread implements PinsetterObserver {
      * @return The new lane event
      */
     private LaneEvent lanePublish() {
-        LaneEvent laneEvent = new LaneEvent(party, bowlIndex, currentThrower, cumulScores, scores, frameNumber + 1, curScores, ball, gameIsHalted);
-        return laneEvent;
+        return new LaneEvent(party, bowlIndex, currentThrower, cumulScores, scores, frameNumber + 1, curScores, ball, gameIsHalted);
     }
 
     /**

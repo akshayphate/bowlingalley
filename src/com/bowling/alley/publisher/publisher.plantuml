@@ -1,6 +1,6 @@
 @startuml
 
-title __PUBLISHER's Class Diagram__\n
+title __Publisher's Class Diagram__\n
 
   namespace com.bowling.alley {
     namespace publisher {
@@ -45,7 +45,11 @@ title __PUBLISHER's Class Diagram__\n
           - tenthFrameStrike : boolean
           + Lane()
           + assignParty()
+          + getBall()
+          + getBowlIndex()
+          + getCumulScores()
           + getPinsetter()
+          + getScores()
           + isGameFinished()
           + isPartyAssigned()
           + pauseGame()
@@ -88,6 +92,7 @@ title __PUBLISHER's Class Diagram__\n
   
 
   com.bowling.alley.publisher.Lane .up.|> com.bowling.alley.observer.PinsetterObserver
+  com.bowling.alley.publisher.Lane o-- com.bowling.alley.util.CalculateScore : calculateScore
   com.bowling.alley.publisher.Lane o-- com.bowling.alley.model.Bowler : currentThrower
   com.bowling.alley.publisher.Lane o-- com.bowling.alley.model.Party : party
   com.bowling.alley.publisher.Lane o-- com.bowling.alley.publisher.Pinsetter : setter

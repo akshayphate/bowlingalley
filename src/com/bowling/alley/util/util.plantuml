@@ -1,6 +1,6 @@
 @startuml
 
-title __UTIL's Class Diagram__\n
+title __Util's Class Diagram__\n
 
   namespace com.bowling.alley {
     namespace util {
@@ -9,6 +9,16 @@ title __UTIL's Class Diagram__\n
           {static} + getBowlerInfo()
           {static} + getBowlers()
           {static} + putBowlerInfo()
+      }
+    }
+  }
+  
+
+  namespace com.bowling.alley {
+    namespace util {
+      class com.bowling.alley.util.CalculateScore {
+          + CalculateScore()
+          + getScore()
       }
     }
   }
@@ -66,6 +76,7 @@ title __UTIL's Class Diagram__\n
   }
   
 
+  com.bowling.alley.util.CalculateScore o-- com.bowling.alley.publisher.Lane : lane
   com.bowling.alley.util.PrintableText .up.|> java.awt.print.Printable
 
 

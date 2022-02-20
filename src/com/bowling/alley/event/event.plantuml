@@ -1,6 +1,6 @@
 @startuml
 
-title __EVENT's Class Diagram__\n
+title __Event package's Class Diagram__\n
 
   namespace com.bowling.alley {
     namespace event {
@@ -16,14 +16,14 @@ title __EVENT's Class Diagram__\n
   namespace com.bowling.alley {
     namespace event {
       class com.bowling.alley.event.LaneEvent {
-          ~ ball : int
-          ~ cumulScore : int[][]
-          ~ curScores : int[]
-          ~ frame : int
-          ~ frameNum : int
-          ~ index : int
-          ~ mechProb : boolean
-          ~ score : Map<Bowler, int[]>
+          - ball : int
+          - cumulScore : int[][]
+          - curScores : int[]
+          - frame : int
+          - frameNum : int
+          - index : int
+          - mechProb : boolean
+          - score : Map<Bowler, int[]>
           + LaneEvent()
           + getBall()
           + getBowler()

@@ -1,6 +1,6 @@
 @startuml
 
-title __VIEW's Class Diagram__\n
+title view's Class Diagram__\n
 
   namespace com.bowling.alley {
     namespace view {

@@ -1,6 +1,6 @@
 @startuml
 
-title __MODEL's Class Diagram__\n
+title __Model's Class Diagram__\n
 
   namespace com.bowling.alley {
     namespace model {

@@ -1,6 +1,6 @@
 @startuml
 
-title __OBSERVER's Class Diagram__\n
+title __Observer's Class Diagram__\n
 
   namespace com.bowling.alley {
     namespace observer {

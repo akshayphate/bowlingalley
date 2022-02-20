@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/codemr/bowlingalley_ver_0/html" />
       <excludeFolder url="file://$MODULE_DIR$/codemr/bowlingalley_repackaging/html" />
+      <excludeFolder url="file://$MODULE_DIR$/codemr/bowlingalley/html" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,6 +1,6 @@
 @startuml
 
-title __BOWLINGALLEY's Class Diagram__\n
+title bowlingalley's Class Diagram__\n
 
   namespace com.bowling.alley {
     class com.bowling.alley.Drive {
@@ -122,6 +122,14 @@ title __BOWLINGALLEY's Class Diagram__\n
 
   namespace com.bowling.alley {
     namespace util {
+      class com.bowling.alley.util.CalculateScore {
+      }
+    }
+  }
+  
+
+  namespace com.bowling.alley {
+    namespace util {
       class com.bowling.alley.util.PrintableText {
       }
     }
@@ -220,9 +228,11 @@ title __BOWLINGALLEY's Class Diagram__\n
   com.bowling.alley.event.LaneEvent o-- com.bowling.alley.model.Party : p
   com.bowling.alley.model.Alley o-- com.bowling.alley.publisher.ControlDesk : controldesk
   com.bowling.alley.publisher.Lane .up.|> com.bowling.alley.observer.PinsetterObserver
+  com.bowling.alley.publisher.Lane o-- com.bowling.alley.util.CalculateScore : calculateScore
   com.bowling.alley.publisher.Lane o-- com.bowling.alley.model.Bowler : currentThrower
   com.bowling.alley.publisher.Lane o-- com.bowling.alley.model.Party : party
   com.bowling.alley.publisher.Lane o-- com.bowling.alley.publisher.Pinsetter : setter
+  com.bowling.alley.util.CalculateScore o-- com.bowling.alley.publisher.Lane : lane
   com.bowling.alley.util.PrintableText .up.|> java.awt.print.Printable
   com.bowling.alley.view.AddPartyView .up.|> java.awt.event.ActionListener
   com.bowling.alley.view.AddPartyView .up.|> javax.swing.event.ListSelectionListener
