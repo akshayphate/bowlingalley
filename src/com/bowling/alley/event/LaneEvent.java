@@ -32,15 +32,15 @@ import com.bowling.alley.model.Party;
 public class LaneEvent
 {
 	private Party p;
-	int frame;
-	int ball;
-	Bowler bowler;
-	int[][] cumulScore;
-	Map<Bowler, int[]> score;
-	int index;
-	int frameNum;
-	int[] curScores;
-	boolean mechProb;
+	private int frame;
+	private int ball;
+	private Bowler bowler;
+	private int[][] cumulScore;
+	private Map<Bowler, int[]> score;
+	private int index;
+	private int frameNum;
+	private int[] curScores;
+	private boolean mechProb;
 
 	public LaneEvent(Party pty, int theIndex, Bowler theBowler, int[][] theCumulScore, Map<Bowler, int[]> theScore, int theFrameNum,
 					 int[] theCurScores, int theBall, boolean mechProblem)
