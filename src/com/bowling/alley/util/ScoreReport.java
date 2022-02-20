@@ -99,7 +99,7 @@ public class ScoreReport
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			System.out.println("");
 		}
 	}
 
