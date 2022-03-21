@@ -42,7 +42,6 @@ import main.java.com.bowling.alley.publisher.Lane;
 import main.java.com.bowling.alley.view.AddPartyView;
 import main.java.com.bowling.alley.view.LaneStatusView;
 
-
 public class ControlDeskView implements ActionListener, ControlDeskObserver
 {
 

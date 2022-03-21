@@ -30,6 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import main.java.com.bowling.alley.view.AddPartyView;
 
 public class NewPatronView implements ActionListener
 {
@@ -150,7 +151,6 @@ public class NewPatronView implements ActionListener
 			addParty.updateNewPatron( this );
 			win.hide();
 		}
-
 	}
 
 	public boolean done()

@@ -1,4 +1,5 @@
-    package main.java.com.bowling.alley.view;
+package main.java.com.bowling.alley.view;
+
 /* AddPartyView.java
  *
  *  Version:
@@ -46,6 +47,8 @@ import javax.swing.event.ListSelectionListener;
 import com.bowling.alley.db.DBUtil;
 import main.java.com.bowling.alley.model.Bowler;
 import main.java.com.bowling.alley.util.BowlerFile;
+import main.java.com.bowling.alley.view.ControlDeskView;
+import main.java.com.bowling.alley.view.NewPatronView;
 
 /**
  * Constructor for GUI used to Add Parties to the waiting party queue.
@@ -67,6 +70,8 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 	private String selectedNick, selectedMember;
 
 	public AddPartyView(ControlDeskView controlDesk, int max) throws Exception {
+		dbUtil = new DBUtil();
+
 		this.controlDesk = controlDesk;
 		maxSize = max;
 
@@ -138,11 +143,8 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 		bowlerPanel.setLayout(new FlowLayout());
 		bowlerPanel.setBorder(new TitledBorder("Bowler Database"));
 		bowlerdb = new Vector<>();
-		dbUtil = new DBUtil();
 
-		try
-		{
-//			bowlerdb = new Vector<>(BowlerFile.getBowlers());
+		try {
 			bowlerdb = new Vector<>(dbUtil.getBowlers());
 		}
 		catch (Exception e)
@@ -261,16 +263,16 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 	 *
 	 * @param newPatron the NewPatronView that called this method
 	 */
+
 	public void updateNewPatron(NewPatronView newPatron)
 	{
 		try
 		{
-			Bowler checkBowler = BowlerFile.getBowlerInfo(newPatron.getNick());
-
+			Bowler checkBowler = dbUtil.getBowlerInfo(newPatron.getNick());
 			if (checkBowler == null)
 			{
-				BowlerFile.putBowlerInfo(newPatron.getNick(), newPatron.getFull(), newPatron.getEmail());
-				bowlerdb = new Vector<>(BowlerFile.getBowlers());
+				dbUtil.putBowlerInfo(newPatron.getNick(), newPatron.getFull(), newPatron.getEmail());
+				bowlerdb = new Vector<>(dbUtil.getBowlers());
 				allBowlers.setListData(bowlerdb);
 				party.add(newPatron.getNick());
 				partyList.setListData(party);
