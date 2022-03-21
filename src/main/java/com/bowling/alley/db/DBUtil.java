@@ -91,6 +91,27 @@ public class DBUtil {
         return allBowlers;
     }
 
+    public int numberOfParties(){
+        try
+        {
+            Connection conn = DriverManager.getConnection(db_url, username, password);
+
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT COUNT(*) FROM PARTY";
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            if(!rs.wasNull())
+            {
+                return Integer.parseInt(rs.getString(1));
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
     public void addParty(int party_id, String party_name)
     {
         try
@@ -100,7 +121,6 @@ public class DBUtil {
             Statement stmt = conn.createStatement();
             String sql = "INSERT INTO PARTY VALUES ('"+party_id+"','"+party_name+"')";
             stmt.executeUpdate(sql);
-
         }
         catch(Exception e)
         {

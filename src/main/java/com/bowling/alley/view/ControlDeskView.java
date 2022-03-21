@@ -218,8 +218,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 	 *
 	 */
 
-	public void updateAddParty(AddPartyView addPartyView)
-	{
+	public void updateAddParty(AddPartyView addPartyView) throws Exception {
 		controlDesk.addPartyQueue(addPartyView.getParty());
 	}
 

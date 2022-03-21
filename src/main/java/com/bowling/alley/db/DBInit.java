@@ -48,7 +48,7 @@ public class DBInit {
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE IF NOT EXISTS PARTY " +
-                    " (party_id INTEGER not NULL, " +
+                    " (party_id INTEGER NOT NULL, " +
                     " party_name VARCHAR(255), " +
                     " PRIMARY KEY ( party_id ))";
 

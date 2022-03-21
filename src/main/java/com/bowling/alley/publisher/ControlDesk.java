@@ -43,6 +43,7 @@ package main.java.com.bowling.alley.publisher;
 
 import java.util.*;
 
+import com.bowling.alley.db.DBUtil;
 import main.java.com.bowling.alley.util.Queue;
 import main.java.com.bowling.alley.event.ControlDeskEvent;
 import main.java.com.bowling.alley.model.Bowler;
@@ -118,24 +119,11 @@ public class ControlDesk extends Thread
 	 *
 	 */
 
-	private Bowler registerPatron(String nickName)
-	{
+	private Bowler registerPatron(String nickName) throws Exception {
 		Bowler patron = null;
-
-		try
-		{
-			// only one patron / nick.... no dupes, no checks
-			patron = BowlerFile.getBowlerInfo(nickName);
-		}
-		catch (FileNotFoundException e)
-		{
-			System.err.println("Error..." + e);
-		}
-		catch (IOException e)
-		{
-			System.err.println("Error..." + e);
-		}
-
+		DBUtil dbUtil = new DBUtil();
+		// only one patron / nick.... no dupes, no checks
+		patron = dbUtil.getBowlerInfo(nickName);
 		return patron;
 	}
 
@@ -176,8 +164,7 @@ public class ControlDesk extends Thread
 	 *
 	 */
 
-	public void addPartyQueue(Vector<String> partyNicks)
-	{
+	public void addPartyQueue(Vector<String> partyNicks) throws Exception {
 		Vector<Bowler> partyBowlers = new Vector<>();
 
 		for (int i = 0; i < partyNicks.size(); i++)
@@ -186,8 +173,15 @@ public class ControlDesk extends Thread
 			partyBowlers.add(newBowler);
 		}
 
-		Party newParty = new Party(partyBowlers);
+		DBUtil dbUtil = new DBUtil();
+		int noOfParties = dbUtil.numberOfParties();
+
+		Party newParty = new Party(noOfParties+1, partyBowlers);
 		partyQueue.add(newParty);
+
+		// Add party in the database
+		dbUtil.addParty(newParty.getPartyId(), newParty.getMembers().get(0).getNickName());
+
 		publish(new ControlDeskEvent(getPartyQueue()));
 	}
 

@@ -225,7 +225,11 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 		{
 			if ( party != null && party.size() > 0)
 			{
-				controlDesk.updateAddParty( this );
+				try {
+					controlDesk.updateAddParty( this );
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 			}
 			win.hide();
 		}
