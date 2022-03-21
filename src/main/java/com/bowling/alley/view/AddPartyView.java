@@ -43,6 +43,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.bowling.alley.db.DBUtil;
 import main.java.com.bowling.alley.model.Bowler;
 import main.java.com.bowling.alley.util.BowlerFile;
 
@@ -61,10 +62,11 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 	private Vector<String> party, bowlerdb;
 
 	private ControlDeskView controlDesk;
+	private DBUtil dbUtil;
+
 	private String selectedNick, selectedMember;
 
-	public AddPartyView(ControlDeskView controlDesk, int max)
-	{
+	public AddPartyView(ControlDeskView controlDesk, int max) throws Exception {
 		this.controlDesk = controlDesk;
 		maxSize = max;
 
@@ -131,16 +133,17 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 		return partyPanel;
 	}
 
-	private JPanel createBowlerPanel()
-	{
+	private JPanel createBowlerPanel() throws Exception {
 		JPanel bowlerPanel = new JPanel();
 		bowlerPanel.setLayout(new FlowLayout());
 		bowlerPanel.setBorder(new TitledBorder("Bowler Database"));
 		bowlerdb = new Vector<>();
+		dbUtil = new DBUtil();
 
 		try
 		{
-			bowlerdb = new Vector<>(BowlerFile.getBowlers());
+//			bowlerdb = new Vector<>(BowlerFile.getBowlers());
+			bowlerdb = new Vector<>(dbUtil.getBowlers());
 		}
 		catch (Exception e)
 		{

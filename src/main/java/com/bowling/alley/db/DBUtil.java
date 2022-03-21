@@ -24,7 +24,7 @@ public class DBUtil {
         Vector<Bowler> bowlers = BowlerFile.getBowlerObjs();
         for (Bowler b: bowlers){
             putBowlerInfo(b.getNickName(), b.getFullName(), b.getEmail());
-            System.out.println("Inserted bowler:" + b.getNickName());
+//            System.out.println("Inserted bowler:" + b.getNickName());
         }
     }
 

@@ -39,6 +39,10 @@ import main.java.com.bowling.alley.observer.ControlDeskObserver;
 import main.java.com.bowling.alley.publisher.ControlDesk;
 import main.java.com.bowling.alley.publisher.Lane;
 
+import main.java.com.bowling.alley.view.AddPartyView;
+import main.java.com.bowling.alley.view.LaneStatusView;
+
+
 public class ControlDeskView implements ActionListener, ControlDeskObserver
 {
 
@@ -191,7 +195,11 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 	{
 		if (e.getSource().equals(addParty))
 		{
-			new AddPartyView(this, maxMembers);
+			try {
+				new AddPartyView(this, maxMembers);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 		else if (e.getSource().equals(assign))
 		{
