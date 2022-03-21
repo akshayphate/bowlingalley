@@ -1,9 +1,6 @@
 package main.java.com.bowling.alley;
 
-import com.bowling.alley.db.DBInit;
-import main.java.com.bowling.alley.model.Alley;
-import main.java.com.bowling.alley.publisher.ControlDesk;
-import main.java.com.bowling.alley.view.ControlDeskView;
+import com.bowling.alley.db.DBUtil;
 
 public class Drive {
 
@@ -19,8 +16,12 @@ public class Drive {
 //		controlDesk.subscribe( cdv );
 
 //		To create database and tables
-		DBInit dbInit = new DBInit();
-		dbInit.createDatabase();
-		dbInit.createTables();
+//		DBInit dbInit = new DBInit();
+//		dbInit.createDatabase();
+//		dbInit.createTables();
+
+//      To add players in db
+		DBUtil dbUtil = new DBUtil();
+		dbUtil.addBowlersToDB();
 	}
 }

@@ -30,7 +30,7 @@ public class BowlerFile
 {
 
 	/** The location of the bowelr database */
-	private static String BOWLER_DAT = "/home/akshay/IdeaProjects/bowlingalley/src/main/java/BOWLERS.DAT";
+	private static String BOWLER_DAT = "src/main/java/BOWLERS.DAT";
 
 	/**
 	 * Retrieves bowler information from the database and returns a Bowler objects with populated fields.
@@ -109,6 +109,27 @@ public class BowlerFile
 				String[] bowler = data.split("\t");
 				//"Nick: bowler[0] Full: bowler[1] email: bowler[2]
 				allBowlers.add(bowler[0]);
+			}
+		}
+
+		return allBowlers;
+	}
+
+	public static Vector<Bowler> getBowlerObjs() throws IOException, FileNotFoundException {
+
+		Vector<Bowler> allBowlers = new Vector<>();
+
+		try (BufferedReader in = new BufferedReader(new FileReader(BOWLER_DAT)))
+		{
+			String data;
+
+			while ((data = in.readLine()) != null)
+			{
+				// File format is nick\tfname\te-mail
+				//"Nick: bowler[0] Full: bowler[1] email: bowler[2]
+				String[] bowler = data.split("\t");
+				Bowler obj = new Bowler( bowler[0], bowler[1], bowler[2]);
+				allBowlers.add(obj);
 			}
 		}
 
