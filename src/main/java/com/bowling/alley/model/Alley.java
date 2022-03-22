@@ -33,8 +33,7 @@ public class Alley
 {
 	public ControlDesk controldesk;
 
-	public Alley(int numLanes)
-	{
+	public Alley(int numLanes) throws Exception {
 		controldesk = new ControlDesk(numLanes);
 	}
 

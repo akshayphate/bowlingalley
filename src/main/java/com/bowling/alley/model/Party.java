@@ -31,14 +31,17 @@ public class Party
 	/** Vector of bowlers in this party */
 	private Vector<Bowler> myBowlers;
 
+	private int partyId;
+
 	/**
 	 * Constructor for a Party
 	 *
 	 * @param bowlers	Vector of bowlers that are in this party
 	 */
 
-	public Party(Vector<Bowler> bowlers )
+	public Party(int partyId, Vector<Bowler> bowlers )
 	{
+		this.partyId = partyId;
 		myBowlers = new Vector<>(bowlers);
 	}
 
@@ -51,6 +54,10 @@ public class Party
 	public Vector<Bowler> getMembers()
 	{
 		return myBowlers;
+	}
+
+	public int getPartyId() {
+		return partyId;
 	}
 
 }
