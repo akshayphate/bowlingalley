@@ -24,17 +24,18 @@ public class Drive {
 		}
 
 		int numLanes = Integer.parseInt(props.getProperty("numLanes"));
+		int numFrames = Integer.parseInt(props.getProperty("numFrames"));
 		int maxPatronsPerParty= Integer.parseInt(props.getProperty("maxPatronsPerParty"));
 
 //		Initializing DB
-		StorageInterface storage = new SQLdb();
-		storage.createDatabase();
-		storage.createTables();
+//		StorageInterface storage = new SQLdb();
+//		storage.createDatabase();
+//		storage.createTables();
 
 //		Adding players in db
-		storage.addBowlersToDB();
+//		storage.addBowlersToDB();
 
-		Alley a = new Alley( numLanes );
+		Alley a = new Alley( numLanes, numFrames );
 		ControlDesk controlDesk = a.getControlDesk();
 
 		ControlDeskView cdv = new ControlDeskView( controlDesk, maxPatronsPerParty);

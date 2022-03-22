@@ -162,7 +162,6 @@ public class Pinsetter implements ActionListener
 			simulateThrow.setVisible(true);
 		double skill = simulateThrow.getSkill();
 
-
 		// 0.7
 
 		System.out.println(skill);

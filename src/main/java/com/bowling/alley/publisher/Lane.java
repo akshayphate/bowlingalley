@@ -173,6 +173,9 @@ public class Lane extends Thread implements PinsetterObserver {
     private int[] strikes;
     private int[] gutters;
 
+    private int firstHighestIndex, secondHighestIndex;
+    private int winnerIndex;
+
     private StorageInterface storage;
 
     /**
@@ -212,6 +215,8 @@ public class Lane extends Thread implements PinsetterObserver {
                 checkIfHalted();
                 playGame();
             } else if (partyAssigned && gameFinished) {
+                // Provide additional chance to the second-highest bowler
+                declareWinner();
                 endGame();
             }
 
@@ -222,6 +227,74 @@ public class Lane extends Thread implements PinsetterObserver {
             }
         }
     }
+
+    private void declareWinner() {
+        if(party.getMembers().size() < 2 ){
+            return ;
+        }
+
+        int firstMax = 0, secondMax = 0;
+
+        for(int i=0; i<party.getMembers().size(); i++){
+            if(cumulScores[i][9] > firstMax){
+                secondMax = firstMax;
+                firstMax = cumulScores[i][9];
+                secondHighestIndex = firstHighestIndex;
+                firstHighestIndex = i;
+            }
+            else if(cumulScores[i][9] > secondMax){
+                secondMax = cumulScores[i][9];
+                secondHighestIndex = i;
+            }
+        }
+        Random random = new Random();
+        int pinsDown = random.nextInt(11);
+        int firstHighestScore = cumulScores[firstHighestIndex][9];
+        int secondHighestScore = cumulScores[secondHighestIndex][9] + pinsDown;
+
+        if(firstHighestScore == secondHighestScore){
+            tieBreak();
+        }
+        else if(secondHighestScore > firstHighestScore){
+            additionalChance();
+        }
+    }
+
+    private void tieBreak() {
+        // Check strikes of bowlers
+        // Player with more strikes is the winner
+        if(strikes[firstHighestIndex] > strikes[secondHighestIndex]){
+            winnerIndex = firstHighestIndex;
+        }
+        else if(strikes[firstHighestIndex] < strikes[secondHighestIndex]){
+            winnerIndex = secondHighestIndex;
+        }
+        else{
+            // Check gutters of bowlers
+            // Player with fewer gutters is the winner
+            if(gutters[firstHighestIndex] < strikes[secondHighestIndex]){
+                winnerIndex = firstHighestIndex;
+            }
+            else if(strikes[firstHighestIndex] > strikes[secondHighestIndex]){
+                winnerIndex = secondHighestIndex;
+            }
+            else{
+                // If strikes and gutters are also same, declaring first player as the winner,
+                // because he has the highest score earlier
+                winnerIndex = firstHighestIndex;
+            }
+        }
+    }
+
+    private void additionalChance() {
+        // Another 3 frames of bowling between first and second-highest player
+        Vector<Bowler> bowlers = new Vector<>();
+        bowlers.add(party.getMembers().get(firstHighestIndex));
+        bowlers.add(party.getMembers().get(secondHighestIndex));
+
+
+    }
+
 
     private void checkIfHalted() {
         while (gameIsHalted) {

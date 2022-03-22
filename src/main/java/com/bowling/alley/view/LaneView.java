@@ -38,10 +38,13 @@ public class LaneView implements LaneObserver, ActionListener
 	JButton maintenance;
 	Lane lane;
 	JButton throwButton;
-	public LaneView(Lane lane, int laneNum)
+	int noOfFrames;
+
+	public LaneView(Lane lane, int laneNum, int noOfFrames)
 	{
 		this.lane = lane;
 		this.lane.setCurrentLaneNumber(laneNum);
+		this.noOfFrames = noOfFrames;
 
 		initDone = true;
 		frame = new JFrame("Lane " + laneNum + ":");
@@ -79,17 +82,17 @@ public class LaneView implements LaneObserver, ActionListener
 		JPanel panel = new JPanel();
 
 		panel.setLayout(new GridLayout(0, 1));
-
-		balls = new JPanel[numBowlers][23];
-		ballLabel = new JLabel[numBowlers][23];
-		scores = new JPanel[numBowlers][10];
-		scoreLabel = new JLabel[numBowlers][10];
-		ballGrid = new JPanel[numBowlers][10];
+		int val = noOfFrames*2 + 3;
+		balls = new JPanel[numBowlers][val];
+		ballLabel = new JLabel[numBowlers][val];
+		scores = new JPanel[numBowlers][noOfFrames];
+		scoreLabel = new JLabel[numBowlers][noOfFrames];
+		ballGrid = new JPanel[numBowlers][noOfFrames];
 		pins = new JPanel[numBowlers];
 
 		for (int i = 0; i != numBowlers; i++)
 		{
-			for (int j = 0; j != 23; j++)
+			for (int j = 0; j != val; j++)
 			{
 				ballLabel[i][j] = new JLabel(" ");
 				balls[i][j] = new JPanel();
@@ -100,7 +103,7 @@ public class LaneView implements LaneObserver, ActionListener
 
 		for (int i = 0; i != numBowlers; i++)
 		{
-			for (int j = 0; j != 9; j++)
+			for (int j = 0; j != noOfFrames-1; j++)
 			{
 				ballGrid[i][j] = new JPanel();
 				ballGrid[i][j].setLayout(new GridLayout(0, 3));
@@ -109,7 +112,7 @@ public class LaneView implements LaneObserver, ActionListener
 				ballGrid[i][j].add(balls[i][2 * j + 1], BorderLayout.EAST);
 			}
 
-			int j = 9;
+			int j = noOfFrames-1;
 			ballGrid[i][j] = new JPanel();
 			ballGrid[i][j].setLayout(new GridLayout(0, 3));
 			ballGrid[i][j].add(balls[i][2 * j]);
@@ -123,7 +126,7 @@ public class LaneView implements LaneObserver, ActionListener
 			pins[i].setBorder(BorderFactory.createTitledBorder(((Bowler) bowlers.get(i)).getNick()));
 			pins[i].setLayout(new GridLayout(0, 10));
 
-			for (int k = 0; k != 10; k++)
+			for (int k = 0; k != noOfFrames; k++)
 			{
 				scores[i][k] = new JPanel();
 				scoreLabel[i][k] = new JLabel("  ", SwingConstants.CENTER);

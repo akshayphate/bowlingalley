@@ -63,6 +63,9 @@ public class ControlDesk extends Thread
 	/** The number of lanes represented */
 	private int numLanes;
 
+	private int numFrames;
+	private boolean additionalThrow;
+
 	/** The collection of subscribers */
 	private Vector<ControlDeskObserver> subscribers;
 
@@ -75,8 +78,11 @@ public class ControlDesk extends Thread
 	 *
 	 */
 
-	public ControlDesk(int numLanes) throws Exception {
+	public ControlDesk(int numLanes, int numFrames, boolean additionalThrow) throws Exception {
 		this.numLanes = numLanes;
+		this.numFrames = numFrames;
+		this.additionalThrow = additionalThrow;
+
 		lanes = new HashSet<>(numLanes);
 		partyQueue = new Queue<>();
 		subscribers = new Vector<>();
@@ -215,6 +221,10 @@ public class ControlDesk extends Thread
 		return numLanes;
 	}
 
+	public int getNumFrames() { return numFrames; }
+
+	public boolean getAdditionalThrow() { return additionalThrow; }
+
 	/**
 	 * Allows objects to subscribe as observers
 	 *
@@ -255,4 +265,5 @@ public class ControlDesk extends Thread
 	{
 		return lanes;
 	}
+
 }

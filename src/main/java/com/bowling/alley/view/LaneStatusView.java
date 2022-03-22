@@ -35,15 +35,17 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 	private PinSetterView psv;
 	private LaneView lv;
 	private Lane lane;
-	int laneNum;
+
+	int laneNum, noOfFrames;
 
 	boolean laneShowing;
 	boolean psShowing;
 
-	public LaneStatusView(Lane lane, int laneNum)
+	public LaneStatusView(Lane lane, int laneNum, int noOfFrames)
 	{
 		this.lane = lane;
 		this.laneNum = laneNum;
+		this.noOfFrames = noOfFrames;
 
 		laneShowing=false;
 		psShowing=false;
@@ -62,7 +64,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		Pinsetter ps = lane.getPinsetter();
 		ps.subscribe(psv);
 
-		lv = new LaneView( lane, laneNum );
+		lv = new LaneView( lane, laneNum, noOfFrames );
 		lane.subscribe(lv);
 	}
 

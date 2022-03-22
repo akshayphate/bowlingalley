@@ -59,10 +59,10 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 
 	public ControlDeskView(ControlDesk controlDesk, int maxMembers)
 	{
-
 		this.controlDesk = controlDesk;
 		this.maxMembers = maxMembers;
 		int numLanes = controlDesk.getNumLanes();
+		int numFrames = controlDesk.getNumFrames();
 
 		initWindow();
 
@@ -70,7 +70,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 		JPanel controlsPanel = createControlsPanel();
 
 		// Lane Status Panel
-		JPanel laneStatusPanel = createLaneStatusPanel(numLanes);
+		JPanel laneStatusPanel = createLaneStatusPanel(numLanes, numFrames);
 
 		// Party Queue Panel
 		JPanel partyPanel = createPartyPanel();
@@ -127,7 +127,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 		return controlsPanel;
 	}
 
-	private JPanel createLaneStatusPanel(int numOfLanes)
+	private JPanel createLaneStatusPanel(int numOfLanes, int numOfFrames)
 	{
 		JPanel laneStatusPanel = new JPanel();
 		laneStatusPanel.setLayout(new GridLayout(numOfLanes, 1));
@@ -140,7 +140,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 		while (it.hasNext())
 		{
 			Lane curLane = it.next();
-			LaneStatusView laneStat = new LaneStatusView(curLane,(laneCount+1));
+			LaneStatusView laneStat = new LaneStatusView(curLane,(laneCount+1), numOfFrames);
 			curLane.subscribe(laneStat);
 			curLane.getPinsetter().subscribe(laneStat);
 			JPanel lanePanel = laneStat.showLane();
