@@ -73,7 +73,6 @@ package com.bowling.alley.publisher;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Vector;
 
 
@@ -81,7 +80,6 @@ import com.bowling.alley.event.PinsetterEvent;
 import com.bowling.alley.observer.PinsetterObserver;
 import com.bowling.alley.util.SimulateThrow;
 import com.bowling.alley.util.SimulateThrowFactory;
-import com.bowling.alley.util.SimulateThrowTemp;
 
 import javax.swing.*;
 
