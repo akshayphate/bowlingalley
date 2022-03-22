@@ -16,6 +16,7 @@ public class SimulateThrow extends javax.swing.JFrame {
     private Random rd = new Random();
     private boolean hasBowled = false;
     private int laneNumber;
+    private JLabel message;
     /**
      * Creates new form SimulateThrow
      */
@@ -23,6 +24,7 @@ public class SimulateThrow extends javax.swing.JFrame {
         initComponents();
         this.laneNumber = laneNumber;
         this.jLabel1.setText("Lane : "+laneNumber);
+        this.message.setText("Please throw");
         
     }
 
@@ -36,7 +38,7 @@ public class SimulateThrow extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jSlider1 = new javax.swing.JSlider();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        //jLabel1.setText("jLabel1");
+        jLabel1.setText("");
         jButton1.setBackground(new java.awt.Color(204, 255, 204));
         jButton1.setText("Play");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -60,6 +62,7 @@ public class SimulateThrow extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        message = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jSlider1 = new javax.swing.JSlider();
 
@@ -67,10 +70,12 @@ public class SimulateThrow extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 104, 251));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("jLabel1");
+        jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel1.setText("");
+        message.setHorizontalAlignment(SwingConstants.CENTER);
+        message.setText("");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 80, 50));
+        getContentPane().add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 150, 100));
 
         jButton1.setBackground(new java.awt.Color(204, 255, 204));
         jButton1.setText("Play");
@@ -81,7 +86,7 @@ public class SimulateThrow extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 100, 40));
-        getContentPane().add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 260, 30));
+        //getContentPane().add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 260, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -89,6 +94,17 @@ public class SimulateThrow extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
            this.skill = rd.nextDouble();
            this.hasBowled = true;
+           if (skill < 0.2) {
+               this.message.setText(" (╥︣﹏᷅╥) : Better luck next time" );
+           }
+
+           if (skill >= 0.2 && skill < 0.7) {
+               this.message.setText("(͡• ͜ʖ ͡•) : Good Throw");
+           }
+
+           else {
+                this.message.setText(" (•◡•) : Awesome");
+           }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

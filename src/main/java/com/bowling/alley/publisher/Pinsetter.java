@@ -81,6 +81,7 @@ import com.bowling.alley.event.PinsetterEvent;
 import com.bowling.alley.observer.PinsetterObserver;
 import com.bowling.alley.util.SimulateThrow;
 import com.bowling.alley.util.SimulateThrowFactory;
+import com.bowling.alley.util.SimulateThrowTemp;
 
 import javax.swing.*;
 
@@ -161,6 +162,11 @@ public class Pinsetter implements ActionListener
 		if (!simulateThrow.isVisible())
 			simulateThrow.setVisible(true);
 		double skill = simulateThrow.getSkill();
+
+//		SimulateThrowTemp simulateThrow = new SimulateThrowTemp();
+//		if (!simulateThrow.isVisible())
+//			simulateThrow.setVisible(true);
+//		double skill = simulateThrow.getSkill();
 
 		// 0.7
 
