@@ -43,15 +43,13 @@ package com.bowling.alley.publisher;
 
 import java.util.*;
 
-import com.bowling.alley.db.DBUtil;
+import com.bowling.alley.storage.SQLdb;
 import com.bowling.alley.event.ControlDeskEvent;
 import com.bowling.alley.model.Bowler;
 import com.bowling.alley.model.Party;
 import com.bowling.alley.observer.ControlDeskObserver;
-import com.bowling.alley.util.BowlerFile;
+import com.bowling.alley.storage.StorageInterface;
 import com.bowling.alley.util.Queue;
-
-import java.io.*;
 
 public class ControlDesk extends Thread
 {
@@ -68,7 +66,7 @@ public class ControlDesk extends Thread
 	/** The collection of subscribers */
 	private Vector<ControlDeskObserver> subscribers;
 
-	private DBUtil dbUtil;
+	private StorageInterface storage;
 
 	/**
 	 * Constructor for the ControlDesk class
@@ -83,7 +81,7 @@ public class ControlDesk extends Thread
 		partyQueue = new Queue<>();
 		subscribers = new Vector<>();
 
-		dbUtil = new DBUtil();
+		storage = new SQLdb();
 
 		for (int i = 0; i < numLanes; i++)
 		{
@@ -124,7 +122,7 @@ public class ControlDesk extends Thread
 	private Bowler registerPatron(String nickName)
 	{
 		Bowler patron = null;
-		patron = dbUtil.getBowlerInfo(nickName);
+		patron = storage.getBowlerInfo(nickName);
 		return patron;
 	}
 
@@ -175,13 +173,13 @@ public class ControlDesk extends Thread
 			partyBowlers.add(newBowler);
 		}
 
-		int noOfParties = dbUtil.numberOfParties();
+		int noOfParties = storage.numberOfParties();
 
 		Party newParty = new Party(noOfParties+1, partyBowlers);
 		partyQueue.add(newParty);
 
 		// Add party into DB
-		dbUtil.addParty(newParty.getPartyId(), newParty.getMembers().get(0).getNickName());
+		storage.addParty(newParty.getPartyId(), newParty.getMembers().get(0).getNickName());
 
 		publish(new ControlDeskEvent(getPartyQueue()));
 	}

@@ -1,9 +1,9 @@
 package com.bowling.alley;
 
-import com.bowling.alley.db.DBInit;
-import com.bowling.alley.db.DBUtil;
 import com.bowling.alley.model.Alley;
 import com.bowling.alley.publisher.ControlDesk;
+import com.bowling.alley.storage.SQLdb;
+import com.bowling.alley.storage.StorageInterface;
 import com.bowling.alley.view.ControlDeskView;
 
 import java.io.IOException;
@@ -26,19 +26,18 @@ public class Drive {
 		int numLanes = Integer.parseInt(props.getProperty("numLanes"));
 		int maxPatronsPerParty= Integer.parseInt(props.getProperty("maxPatronsPerParty"));
 
+//		Initializing DB
+		StorageInterface storage = new SQLdb();
+		storage.createDatabase();
+		storage.createTables();
+
+//		Adding players in db
+		storage.addBowlersToDB();
+
 		Alley a = new Alley( numLanes );
 		ControlDesk controlDesk = a.getControlDesk();
 
 		ControlDeskView cdv = new ControlDeskView( controlDesk, maxPatronsPerParty);
 		controlDesk.subscribe( cdv );
-
-//		Initializing DB
-//		DBInit dbInit = new DBInit();
-//		dbInit.createDatabase();
-//		dbInit.createTables();
-
-//		Adding players in db
-//		DBUtil dbUtil = new DBUtil();
-//		dbUtil.addBowlersToDB();
 	}
 }

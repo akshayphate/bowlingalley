@@ -1,6 +1,7 @@
 package com.bowling.alley.view;
 
-import com.bowling.alley.db.DBUtil;
+import com.bowling.alley.storage.SQLdb;
+import com.bowling.alley.storage.StorageInterface;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -8,7 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-
 
 /**
  *
@@ -21,13 +21,13 @@ public class QueriesView implements ActionListener {
     private JButton minScoreButton, maxScoreButton, topPlayerButton;
     private TextArea outputArea;
 
-    private DBUtil dbUtil;
+    private StorageInterface storage;
 
     private int minScore, maxScore;
     Vector<String> topPlayers;
 
     public QueriesView() throws Exception {
-        dbUtil = new DBUtil();
+        storage = new SQLdb();
 
         initWindow();
 
@@ -114,7 +114,7 @@ public class QueriesView implements ActionListener {
     {
         if (e.getSource().equals(topPlayerButton))
         {
-            topPlayers = dbUtil.getTopBowlers();
+            topPlayers = storage.getTopBowlers();
             if(topPlayers.size() == 0){
                 outputArea.setText("No top players as of now !!");
             }
@@ -129,13 +129,13 @@ public class QueriesView implements ActionListener {
 
         if (e.getSource().equals(maxScoreButton))
         {
-            maxScore = dbUtil.getHighestScoreOfBowler(nickField.getText());
+            maxScore = storage.getHighestScoreOfBowler(nickField.getText());
             outputArea.setText(Integer.toString(maxScore));
         }
 
         if (e.getSource().equals(minScoreButton))
         {
-            minScore = dbUtil.getLowestScoreOfBowler(nickField.getText());
+            minScore = storage.getLowestScoreOfBowler(nickField.getText());
             outputArea.setText(Integer.toString(minScore));
         }
     }

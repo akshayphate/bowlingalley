@@ -43,9 +43,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.bowling.alley.db.DBUtil;
+import com.bowling.alley.storage.SQLdb;
 import com.bowling.alley.model.Bowler;
-import com.bowling.alley.util.BowlerFile;
+import com.bowling.alley.storage.StorageInterface;
 
 /**
  * Constructor for GUI used to Add Parties to the waiting party queue.
@@ -62,7 +62,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 	private Vector<String> party, bowlerdb;
 
 	private ControlDeskView controlDesk;
-	private DBUtil dbUtil;
+	private StorageInterface storage;
 
 	private String selectedNick, selectedMember;
 
@@ -70,7 +70,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 		this.controlDesk = controlDesk;
 		maxSize = max;
 
-		dbUtil = new DBUtil();
+		storage = new SQLdb();
 
 		initWindow();
 
@@ -144,7 +144,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 
 		try
 		{
-			bowlerdb = new Vector<>(dbUtil.getBowlers());
+			bowlerdb = new Vector<>(storage.getBowlers());
 		}
 		catch (Exception e)
 		{
@@ -266,12 +266,12 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 	{
 		try
 		{
-			Bowler checkBowler = dbUtil.getBowlerInfo(newPatron.getNick());
+			Bowler checkBowler = storage.getBowlerInfo(newPatron.getNick());
 
 			if (checkBowler == null)
 			{
-				dbUtil.putBowlerInfo(newPatron.getNick(), newPatron.getFull(), newPatron.getEmail());
-				bowlerdb = new Vector<>(dbUtil.getBowlers());
+				storage.putBowlerInfo(newPatron.getNick(), newPatron.getFull(), newPatron.getEmail());
+				bowlerdb = new Vector<>(storage.getBowlers());
 				allBowlers.setListData(bowlerdb);
 				party.add(newPatron.getNick());
 				partyList.setListData(party);
