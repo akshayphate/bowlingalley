@@ -240,6 +240,8 @@ public class LaneView implements LaneObserver, ActionListener
 
 			} else {
 				simulateThrow.setVisible(true);
+				this.throwButton.setBackground(Color.GREEN);
+				this.throwButton.setText("Disable Bowling");
 			}
 		}
 
