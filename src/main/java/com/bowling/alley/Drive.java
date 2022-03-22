@@ -1,15 +1,28 @@
-package main.java.com.bowling.alley;
+package com.bowling.alley;
 
-import main.java.com.bowling.alley.model.Alley;
-import main.java.com.bowling.alley.publisher.ControlDesk;
-import main.java.com.bowling.alley.view.ControlDeskView;
+import com.bowling.alley.model.Alley;
+import com.bowling.alley.publisher.ControlDesk;
+import com.bowling.alley.view.ControlDeskView;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class Drive {
 
 	public static void main(String[] args) {
 
-		int numLanes = 4; 
-		int maxPatronsPerParty=5;
+		String resourceName = "application.properties"; // could also be a constant
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		Properties props = new Properties();
+		try(InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
+			props.load(resourceStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		int numLanes = Integer.parseInt(props.getProperty("numLanes"));
+		int maxPatronsPerParty= Integer.parseInt(props.getProperty("maxPatronsPerParty"));
 
 		Alley a = new Alley( numLanes );
 		ControlDesk controlDesk = a.getControlDesk();

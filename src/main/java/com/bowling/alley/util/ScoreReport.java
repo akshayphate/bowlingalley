@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.util;
+package com.bowling.alley.util;
 /**
  *
  * SMTP implementation based on code by R�al Gagnon mailto:real@rgagnon.com
@@ -16,8 +16,8 @@ import java.net.Socket;
 import java.util.Vector;
 
 
-import main.java.com.bowling.alley.model.Bowler;
-import main.java.com.bowling.alley.model.Score;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Score;
 
 public class ScoreReport
 {

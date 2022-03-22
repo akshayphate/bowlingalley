@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.publisher;
+package com.bowling.alley.publisher;
 
 /* $Id$
  *
@@ -133,17 +133,17 @@ package main.java.com.bowling.alley.publisher;
  */
 
 
+import com.bowling.alley.event.LaneEvent;
+import com.bowling.alley.event.PinsetterEvent;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Party;
+import com.bowling.alley.observer.LaneObserver;
+import com.bowling.alley.observer.PinsetterObserver;
+import com.bowling.alley.util.CalculateScore;
+import com.bowling.alley.util.ScoreHistoryFile;
+import com.bowling.alley.util.ScoreReport;
 import com.bowling.alley.view.EndGamePrompt;
-import main.java.com.bowling.alley.event.LaneEvent;
-import main.java.com.bowling.alley.event.PinsetterEvent;
-import main.java.com.bowling.alley.model.Bowler;
-import main.java.com.bowling.alley.model.Party;
-import main.java.com.bowling.alley.observer.LaneObserver;
-import main.java.com.bowling.alley.observer.PinsetterObserver;
-import main.java.com.bowling.alley.util.CalculateScore;
-import main.java.com.bowling.alley.util.ScoreHistoryFile;
-import main.java.com.bowling.alley.util.ScoreReport;
-import main.java.com.bowling.alley.view.EndGameReport;
+import com.bowling.alley.view.EndGameReport;
 
 import java.util.*;
 
@@ -167,6 +167,8 @@ public class Lane extends Thread implements PinsetterObserver {
     private int[][] finalScores;
     private int gameNumber;
     private Bowler currentThrower;            // = the thrower who just took a throw
+    private int currentLaneNumber;
+
 
     /**
      * Lane()
@@ -188,6 +190,7 @@ public class Lane extends Thread implements PinsetterObserver {
 
         setter.subscribe(this);
 
+
         this.start();
     }
 
@@ -197,13 +200,16 @@ public class Lane extends Thread implements PinsetterObserver {
      * entry point for execution of this lane
      */
     public void run() {
+
+
+
         while (true) {
             if (partyAssigned && !gameFinished) {
                 // we have a party on this lane,
                 // so next bower can take a thro
                 checkIfHalted();
-                //playGame();
-                startGame();
+                playGame();
+                //startGame();
             } else if (partyAssigned && gameFinished) {
                 endGame();
             }
@@ -243,9 +249,12 @@ public class Lane extends Thread implements PinsetterObserver {
             ball = 0;
 
             while (canThrowAgain) {
-                setter.ballThrown();        // simulate the thrower's ball hiting
+                setter.ballThrown(this.getCurrentLaneNumber());        // simulate the thrower's ball hiting
                 ball++;
             }
+
+            // check two gutters
+
 
             if (frameNumber == 9) {
                 finalScores[bowlIndex][gameNumber] = cumulScores[bowlIndex][9];
@@ -571,5 +580,13 @@ public class Lane extends Thread implements PinsetterObserver {
 
     public int[][] getCumulScores() {
         return cumulScores;
+    }
+
+    public void setCurrentLaneNumber(int currentLaneNumber) {
+        this.currentLaneNumber = currentLaneNumber;
+    }
+
+    public int getCurrentLaneNumber() {
+        return currentLaneNumber;
     }
 }

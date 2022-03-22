@@ -1,8 +1,8 @@
-package main.java.com.bowling.alley.util;
+package com.bowling.alley.util;
 
 
-import main.java.com.bowling.alley.model.Bowler;
-import main.java.com.bowling.alley.publisher.Lane;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.publisher.Lane;
 
 public class CalculateScore {
     private final Lane lane;

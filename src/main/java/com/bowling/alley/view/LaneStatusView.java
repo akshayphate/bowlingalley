@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.view;
+package com.bowling.alley.view;
 /**
  *
  * To change this generated comment edit the template variable "typecomment":
@@ -17,12 +17,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-import main.java.com.bowling.alley.event.LaneEvent;
-import main.java.com.bowling.alley.event.PinsetterEvent;
-import main.java.com.bowling.alley.observer.LaneObserver;
-import main.java.com.bowling.alley.observer.PinsetterObserver;
-import main.java.com.bowling.alley.publisher.Lane;
-import main.java.com.bowling.alley.publisher.Pinsetter;
+import com.bowling.alley.event.LaneEvent;
+import com.bowling.alley.event.PinsetterEvent;
+import com.bowling.alley.observer.LaneObserver;
+import com.bowling.alley.observer.PinsetterObserver;
+import com.bowling.alley.publisher.Lane;
+import com.bowling.alley.publisher.Pinsetter;
 
 public class LaneStatusView implements ActionListener, LaneObserver, PinsetterObserver
 {

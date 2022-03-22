@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.observer;/* $Id$
+package com.bowling.alley.observer;/* $Id$
  *
  * Revisions:
  *   $Log: PinsetterObserver.java,v $
@@ -16,7 +16,7 @@ package main.java.com.bowling.alley.observer;/* $Id$
  *
  */
 
-import main.java.com.bowling.alley.event.PinsetterEvent;
+import com.bowling.alley.event.PinsetterEvent;
 
 public interface PinsetterObserver {
 

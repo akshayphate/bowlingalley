@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.util;
+package com.bowling.alley.util;
 /**
  *
  * To change this generated comment edit the template variable "typecomment":
@@ -7,9 +7,10 @@ package main.java.com.bowling.alley.util;
  * Window>Preferences>Java>Code Generation.
  */
 
+import com.bowling.alley.model.Score;
+
 import java.util.*;
 
-import main.java.com.bowling.alley.model.Score;
 
 import java.io.*;
 

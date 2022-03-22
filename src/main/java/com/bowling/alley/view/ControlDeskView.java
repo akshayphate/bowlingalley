@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.view;
+package com.bowling.alley.view;
 /* ControlDeskView.java
  *
  *  Version:
@@ -34,10 +34,11 @@ import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
 
-import main.java.com.bowling.alley.event.ControlDeskEvent;
-import main.java.com.bowling.alley.observer.ControlDeskObserver;
-import main.java.com.bowling.alley.publisher.ControlDesk;
-import main.java.com.bowling.alley.publisher.Lane;
+import com.bowling.alley.event.ControlDeskEvent;
+import com.bowling.alley.observer.ControlDeskObserver;
+import com.bowling.alley.publisher.ControlDesk;
+import com.bowling.alley.publisher.Lane;
+
 
 public class ControlDeskView implements ActionListener, ControlDeskObserver
 {

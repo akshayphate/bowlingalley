@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.view;
+package com.bowling.alley.view;
 /**
  *
  * To change this generated comment edit the template variable "typecomment":
@@ -6,6 +6,9 @@ package main.java.com.bowling.alley.view;
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
  */
+
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Party;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -26,8 +29,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import main.java.com.bowling.alley.model.Bowler;
-import main.java.com.bowling.alley.model.Party;
 
 public class EndGameReport implements ActionListener, ListSelectionListener
 {

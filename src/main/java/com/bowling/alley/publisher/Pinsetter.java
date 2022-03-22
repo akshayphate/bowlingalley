@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.publisher;
+package com.bowling.alley.publisher;
 /*
  * Pinsetter.java
  *
@@ -70,19 +70,28 @@ package main.java.com.bowling.alley.publisher;
  * Class to represent the pinsetter
  *
  */
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Vector;
 
 
-import main.java.com.bowling.alley.event.PinsetterEvent;
-import main.java.com.bowling.alley.observer.PinsetterObserver;
+import com.bowling.alley.event.PinsetterEvent;
+import com.bowling.alley.observer.PinsetterObserver;
+import com.bowling.alley.util.SimulateThrow;
+import com.bowling.alley.util.SimulateThrowFactory;
 
-public class Pinsetter
+import javax.swing.*;
+
+public class Pinsetter implements ActionListener
 {
 	private Random rnd;
+	//private SimulateThrow simulateThrow = SimulateThrowFactory.getSimulationFrame();
 	private Vector<PinsetterObserver> subscribers;
 
 	private boolean[] pins;
+	private JButton scoreButton;
 	/* 0-9 of state of pine, true for standing,
     false for knocked down
 
@@ -135,17 +144,34 @@ public class Pinsetter
 	 * @pre none
 	 * @post pins may have been knocked down and the thrownumber has been incremented
 	 */
-	public void ballThrown()
+	public void ballThrown(int currentLaneNumber)
 	{
 		// simulated event of ball hits sensor
 		int count = 0;
 		foul = false;
-		double skill = rnd.nextDouble();
 
+		//double skill = rnd.nextDouble();
+
+//		SimulateThrow simulateThrow = new SimulateThrow(currentLaneNumber);
+//		simulateThrow.setVisible(true);
+//		double skill = simulateThrow.getSkill();
+//		simulateThrow.resetWindow();
+
+		SimulateThrow simulateThrow = SimulateThrowFactory.getSimulationFrame(currentLaneNumber);
+		if (!simulateThrow.isVisible())
+			simulateThrow.setVisible(true);
+		double skill = simulateThrow.getSkill();
+
+
+		// 0.7
+
+		System.out.println(skill);
+		// double skill = (new Scanner(System.in)).nextDouble();
 		for (int i=0; i <= 9; i++)
 		{
 			if (pins[i])
 			{
+
 				double pinluck = rnd.nextDouble();
 
 				if (pinluck <= .04)
@@ -226,5 +252,13 @@ public class Pinsetter
 		subscribers.add(subscriber);
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+
+	}
+
+	public void setScoreButton(JButton scoreButton) {
+		this.scoreButton = scoreButton;
+	}
 };
 

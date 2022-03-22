@@ -1,0 +1,239 @@
+@startuml
+
+title view's Class Diagram__\n
+
+  namespace com.bowling.alley {
+    namespace view {
+      class com.bowling.alley.view.AddPartyView {
+          - addPatron : JButton
+          - allBowlers : JList<String>
+          - bowlerdb : Vector<String>
+          - finished : JButton
+          - maxSize : int
+          - newPatron : JButton
+          - party : Vector<String>
+          - partyList : JList<String>
+          - remPatron : JButton
+          - selectedMember : String
+          - selectedNick : String
+          - win : JFrame
+          + AddPartyView()
+          + actionPerformed()
+          + getNames()
+          + getParty()
+          + updateNewPatron()
+          + valueChanged()
+          - createBowlerPanel()
+          - createButton()
+          - createButtonPanel()
+          - createMainPanel()
+          - createPartyPanel()
+          - initWindow()
+      }
+    }
+  }
+  
+
+  namespace com.bowling.alley {
+    namespace view {
+      class com.bowling.alley.view.ControlDeskView {
+          - addParty : JButton
+          - assign : JButton
+          - finished : JButton
+          - maxMembers : int
+          - partyList : JList<String>
+          - win : JFrame
+          + ControlDeskView()
+          + actionPerformed()
+          + receiveControlDeskEvent()
+          + updateAddParty()
+          - createButton()
+          - createControlsPanel()
+          - createLaneStatusPanel()
+          - createMainPanel()
+          - createPartyPanel()
+          - initWindow()
+      }
+    }
+  }
+  
+
+  namespace com.bowling.alley {
+    namespace view {
+      class com.bowling.alley.view.EndGamePrompt {
+          - noButton : JButton
+          - result : int
+          - win : JFrame
+          - yesButton : JButton
+          + EndGamePrompt()
+          + actionPerformed()
+          + distroy()
+          + getResult()
+          - createButton()
+          - createButtonPanel()
+          - createLabelPanel()
+          - createMainPanel()
+          - initWindow()
+      }
+    }
+  }
+  
+
+  namespace com.bowling.alley {
+    namespace view {
+      class com.bowling.alley.view.EndGameReport {
+          - finished : JButton
+          - memberList : JList<String>
+          - printButton : JButton
+          - result : int
+          - retVal : Vector<String>
+          - selectedMember : String
+          - win : JFrame
+          + EndGameReport()
+          + actionPerformed()
+          + destroy()
+          + getResult()
+          + valueChanged()
+          - createButton()
+          - createButtonPanel()
+          - createMainPanel()
+          - createPartyPanel()
+          - initWindow()
+      }
+    }
+  }
+  
+
+  namespace com.bowling.alley {
+    namespace view {
+      class com.bowling.alley.view.LaneStatusView {
+          ~ laneNum : int
+          ~ laneShowing : boolean
+          ~ psShowing : boolean
+          - curBowler : JLabel
+          - jp : JPanel
+          - maintenance : JButton
+          - pinsDown : JLabel
+          - viewLane : JButton
+          - viewPinSetter : JButton
+          + LaneStatusView()
+          + actionPerformed()
+          + receiveLaneEvent()
+          + receivePinsetterEvent()
+          + showLane()
+          - createButtonPanel()
+          - createLabels()
+          - createViews()
+      }
+    }
+  }
+  
+
+  namespace com.bowling.alley {
+    namespace view {
+      class com.bowling.alley.view.LaneView {
+          ~ ballGrid : JPanel[][]
+          ~ ballLabel : JLabel[][]
+          ~ balls : JPanel[][]
+          ~ bowlIt : Iterator<Bowler>
+          ~ bowlers : Vector<Bowler>
+          ~ cpanel : Container
+          ~ cur : int
+          ~ frame : JFrame
+          ~ maintenance : JButton
+          ~ pins : JPanel[]
+          ~ scoreLabel : JLabel[][]
+          ~ scores : JPanel[][]
+          - initDone : boolean
+          + LaneView()
+          + actionPerformed()
+          + hide()
+          + receiveLaneEvent()
+          + show()
+          - makeFrame()
+      }
+    }
+  }
+  
+
+  namespace com.bowling.alley {
+    namespace view {
+      class com.bowling.alley.view.NewPatronView {
+          - abort : JButton
+          - done : boolean
+          - email : String
+          - emailField : JTextField
+          - finished : JButton
+          - full : String
+          - fullField : JTextField
+          - nick : String
+          - nickField : JTextField
+          - win : JFrame
+          + NewPatronView()
+          + actionPerformed()
+          + done()
+          + getEmail()
+          + getFull()
+          + getNick()
+          - createButton()
+          - createButtonPanel()
+          - createField()
+          - createMainPanel()
+          - createPatronPanel()
+          - initWindow()
+      }
+    }
+  }
+  
+
+  namespace com.bowling.alley {
+    namespace view {
+      class com.bowling.alley.view.PinSetterView {
+          - firstRoll : JPanel
+          - frame : JFrame
+          - pinPanels : Vector<JPanel>
+          - pinVect : Vector<JLabel>
+          - secondRoll : JPanel
+          + PinSetterView()
+          + hide()
+          + receivePinsetterEvent()
+          + show()
+          - arrangePins()
+          - createPins()
+          - createTopPanel()
+      }
+    }
+  }
+  
+
+  com.bowling.alley.view.AddPartyView .up.|> java.awt.event.ActionListener
+  com.bowling.alley.view.AddPartyView .up.|> javax.swing.event.ListSelectionListener
+  com.bowling.alley.view.AddPartyView o-- com.bowling.alley.view.ControlDeskView : controlDesk
+  com.bowling.alley.view.ControlDeskView .up.|> com.bowling.alley.observer.ControlDeskObserver
+  com.bowling.alley.view.ControlDeskView .up.|> java.awt.event.ActionListener
+  com.bowling.alley.view.ControlDeskView o-- com.bowling.alley.publisher.ControlDesk : controlDesk
+  com.bowling.alley.view.EndGamePrompt .up.|> java.awt.event.ActionListener
+  com.bowling.alley.view.EndGameReport .up.|> java.awt.event.ActionListener
+  com.bowling.alley.view.EndGameReport .up.|> javax.swing.event.ListSelectionListener
+  com.bowling.alley.view.LaneStatusView .up.|> com.bowling.alley.observer.LaneObserver
+  com.bowling.alley.view.LaneStatusView .up.|> com.bowling.alley.observer.PinsetterObserver
+  com.bowling.alley.view.LaneStatusView .up.|> java.awt.event.ActionListener
+  com.bowling.alley.view.LaneStatusView o-- com.bowling.alley.publisher.Lane : lane
+  com.bowling.alley.view.LaneStatusView o-- com.bowling.alley.view.LaneView : lv
+  com.bowling.alley.view.LaneStatusView o-- com.bowling.alley.view.PinSetterView : psv
+  com.bowling.alley.view.LaneView .up.|> com.bowling.alley.observer.LaneObserver
+  com.bowling.alley.view.LaneView .up.|> java.awt.event.ActionListener
+  com.bowling.alley.view.LaneView o-- com.bowling.alley.publisher.Lane : lane
+  com.bowling.alley.view.NewPatronView .up.|> java.awt.event.ActionListener
+  com.bowling.alley.view.NewPatronView o-- com.bowling.alley.view.AddPartyView : addParty
+  com.bowling.alley.view.PinSetterView .up.|> com.bowling.alley.observer.PinsetterObserver
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

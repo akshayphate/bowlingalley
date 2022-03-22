@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.view;
+package com.bowling.alley.view;
 /*
  *  constructs a prototype Lane View
  *
@@ -8,11 +8,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import main.java.com.bowling.alley.event.LaneEvent;
-import main.java.com.bowling.alley.model.Bowler;
-import main.java.com.bowling.alley.model.Party;
-import main.java.com.bowling.alley.observer.LaneObserver;
-import main.java.com.bowling.alley.publisher.Lane;
+import com.bowling.alley.event.LaneEvent;
+import com.bowling.alley.model.Bowler;
+import com.bowling.alley.model.Party;
+import com.bowling.alley.observer.LaneObserver;
+import com.bowling.alley.publisher.Lane;
+import com.bowling.alley.util.SimulateThrow;
+import com.bowling.alley.util.SimulateThrowFactory;
 
 import java.util.*;
 
@@ -35,16 +37,16 @@ public class LaneView implements LaneObserver, ActionListener
 
 	JButton maintenance;
 	Lane lane;
-
+	JButton throwButton;
 	public LaneView(Lane lane, int laneNum)
 	{
 		this.lane = lane;
+		this.lane.setCurrentLaneNumber(laneNum);
 
 		initDone = true;
 		frame = new JFrame("Lane " + laneNum + ":");
 		cpanel = frame.getContentPane();
 		cpanel.setLayout(new BorderLayout());
-
 		frame.addWindowListener(new WindowAdapter() {
 			@SuppressWarnings("deprecation")
 			public void windowClosing(WindowEvent e) {
@@ -53,7 +55,8 @@ public class LaneView implements LaneObserver, ActionListener
 		});
 
 		cpanel.add(new JPanel());
-
+		this.throwButton = new JButton("Hide Bowling Window");
+		this.throwButton.setBackground(Color.GREEN);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -73,7 +76,6 @@ public class LaneView implements LaneObserver, ActionListener
 		initDone = false;
 		bowlers = party.getMembers();
 		int numBowlers = bowlers.size();
-
 		JPanel panel = new JPanel();
 
 		panel.setLayout(new GridLayout(0, 1));
@@ -91,7 +93,7 @@ public class LaneView implements LaneObserver, ActionListener
 			{
 				ballLabel[i][j] = new JLabel(" ");
 				balls[i][j] = new JPanel();
-				balls[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				balls[i][j].setBorder(BorderFactory.createLineBorder(Color.BLUE));
 				balls[i][j].add(ballLabel[i][j]);
 			}
 		}
@@ -169,8 +171,10 @@ public class LaneView implements LaneObserver, ActionListener
 				maintenancePanel.setLayout(new FlowLayout());
 				maintenance.addActionListener(this);
 				maintenancePanel.add(maintenance);
-
+				maintenancePanel.add(throwButton);
+				throwButton.addActionListener(this);
 				buttonPanel.add(maintenancePanel);
+
 				cpanel.add(buttonPanel, "South");
 				frame.pack();
 			}
@@ -222,6 +226,24 @@ public class LaneView implements LaneObserver, ActionListener
 		{
 			lane.pauseGame();
 		}
+
+		if (e.getSource().equals(throwButton))
+		{
+			SimulateThrow simulateThrow = SimulateThrowFactory.getSimulationFrame(this.lane.getCurrentLaneNumber());
+			if (simulateThrow.isVisible()) {
+				simulateThrow.setVisible(false);
+				this.throwButton.setBackground(Color.RED);
+				this.throwButton.setText("Enable Bowling");
+
+			} else {
+				simulateThrow.setVisible(true);
+			}
+		}
+
 	}
 
+
+	public JButton getThrowButton() {
+		return throwButton;
+	}
 }

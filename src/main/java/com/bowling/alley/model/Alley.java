@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.model;
+package com.bowling.alley.model;
 /*
  * Alley.java
  *
@@ -22,7 +22,7 @@ package main.java.com.bowling.alley.model;
  */
 
 
-import main.java.com.bowling.alley.publisher.ControlDesk;
+import com.bowling.alley.publisher.ControlDesk;
 
 /**
  *  Class that is the outer container for the bowling sim

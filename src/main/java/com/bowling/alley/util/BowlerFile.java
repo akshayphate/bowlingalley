@@ -1,4 +1,4 @@
-package main.java.com.bowling.alley.util;
+package com.bowling.alley.util;
 /* BowlerFile.java
  *
  *  Version:
@@ -20,9 +20,10 @@ package main.java.com.bowling.alley.util;
  *
  */
 
+import com.bowling.alley.model.Bowler;
+
 import java.util.*;
 
-import main.java.com.bowling.alley.model.Bowler;
 
 import java.io.*;
 
