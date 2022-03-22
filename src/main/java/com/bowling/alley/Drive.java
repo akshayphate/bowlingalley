@@ -1,6 +1,7 @@
 package com.bowling.alley;
 
 import com.bowling.alley.db.DBInit;
+import com.bowling.alley.db.DBUtil;
 import com.bowling.alley.model.Alley;
 import com.bowling.alley.publisher.ControlDesk;
 import com.bowling.alley.view.ControlDeskView;
@@ -31,10 +32,13 @@ public class Drive {
 		ControlDeskView cdv = new ControlDeskView( controlDesk, maxPatronsPerParty);
 		controlDesk.subscribe( cdv );
 
-//		 Initializing DB
+//		Initializing DB
 //		DBInit dbInit = new DBInit();
 //		dbInit.createDatabase();
 //		dbInit.createTables();
 
+//		Adding players in db
+//		DBUtil dbUtil = new DBUtil();
+//		dbUtil.addBowlersToDB();
 	}
 }

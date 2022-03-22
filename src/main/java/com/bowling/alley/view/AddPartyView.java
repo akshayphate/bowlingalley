@@ -43,6 +43,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.bowling.alley.db.DBUtil;
 import com.bowling.alley.model.Bowler;
 import com.bowling.alley.util.BowlerFile;
 
@@ -61,12 +62,15 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 	private Vector<String> party, bowlerdb;
 
 	private ControlDeskView controlDesk;
+	private DBUtil dbUtil;
+
 	private String selectedNick, selectedMember;
 
-	public AddPartyView(ControlDeskView controlDesk, int max)
-	{
+	public AddPartyView(ControlDeskView controlDesk, int max) throws Exception {
 		this.controlDesk = controlDesk;
 		maxSize = max;
+
+		dbUtil = new DBUtil();
 
 		initWindow();
 
@@ -140,7 +144,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 
 		try
 		{
-			bowlerdb = new Vector<>(BowlerFile.getBowlers());
+			bowlerdb = new Vector<>(dbUtil.getBowlers());
 		}
 		catch (Exception e)
 		{
@@ -262,12 +266,12 @@ public class AddPartyView implements ActionListener, ListSelectionListener
 	{
 		try
 		{
-			Bowler checkBowler = BowlerFile.getBowlerInfo(newPatron.getNick());
+			Bowler checkBowler = dbUtil.getBowlerInfo(newPatron.getNick());
 
 			if (checkBowler == null)
 			{
-				BowlerFile.putBowlerInfo(newPatron.getNick(), newPatron.getFull(), newPatron.getEmail());
-				bowlerdb = new Vector<>(BowlerFile.getBowlers());
+				dbUtil.putBowlerInfo(newPatron.getNick(), newPatron.getFull(), newPatron.getEmail());
+				bowlerdb = new Vector<>(dbUtil.getBowlers());
 				allBowlers.setListData(bowlerdb);
 				party.add(newPatron.getNick());
 				partyList.setListData(party);

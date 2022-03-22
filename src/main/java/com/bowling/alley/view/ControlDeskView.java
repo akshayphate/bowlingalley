@@ -192,7 +192,11 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 	{
 		if (e.getSource().equals(addParty))
 		{
-			new AddPartyView(this, maxMembers);
+			try {
+				new AddPartyView(this, maxMembers);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 		else if (e.getSource().equals(assign))
 		{

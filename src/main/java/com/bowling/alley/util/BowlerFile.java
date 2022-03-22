@@ -116,4 +116,24 @@ public class BowlerFile
 		return allBowlers;
 	}
 
+	public static Vector<Bowler> getBowlerObjs() throws IOException, FileNotFoundException {
+
+		Vector<Bowler> allBowlers = new Vector<>();
+
+		try (BufferedReader in = new BufferedReader(new FileReader(BOWLER_DAT)))
+		{
+			String data;
+
+			while ((data = in.readLine()) != null)
+			{
+				// File format is nick\tfname\te-mail
+				//"Nick: bowler[0] Full: bowler[1] email: bowler[2]
+				String[] bowler = data.split("\t");
+				Bowler obj = new Bowler( bowler[0], bowler[1], bowler[2]);
+				allBowlers.add(obj);
+			}
+		}
+
+		return allBowlers;
+	}
 }
