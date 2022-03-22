@@ -144,6 +144,7 @@ import com.bowling.alley.storage.StorageInterface;
 import com.bowling.alley.util.CalculateScore;
 import com.bowling.alley.util.ScoreHistoryFile;
 import com.bowling.alley.util.ScoreReport;
+import com.bowling.alley.view.ControlDeskView;
 import com.bowling.alley.view.EndGamePrompt;
 import com.bowling.alley.view.EndGameReport;
 
@@ -162,10 +163,12 @@ public class Lane extends Thread implements PinsetterObserver {
     private int ball;
     private int bowlIndex;
     private int frameNumber;
+    private int noOfFrames;
 
     private boolean tenthFrameStrike;
     private boolean gutterThrow;
     private boolean penalty;
+    private boolean additionalThrow;
 
     private int[] curScores;
     private int[][] cumulScores;
@@ -191,7 +194,7 @@ public class Lane extends Thread implements PinsetterObserver {
      * @pre none
      * @post a new lane has been created and its thered is executing
      */
-    public Lane() throws Exception {
+    public Lane(int noOfFrames, boolean additionalThrow) throws Exception {
         setter = new Pinsetter();
         scores = new HashMap<>();
         subscribers = new Vector<>();
@@ -200,12 +203,14 @@ public class Lane extends Thread implements PinsetterObserver {
         partyAssigned = false;
         gutterThrow = false;
         penalty = false;
+        this.additionalThrow = additionalThrow;
 
         gameNumber = 0;
 
         setter.subscribe(this);
         storage = new SQLdb();
 
+        this.noOfFrames = noOfFrames;
         this.start();
     }
 
@@ -223,8 +228,10 @@ public class Lane extends Thread implements PinsetterObserver {
                 playGame();
             } else if (partyAssigned && gameFinished) {
                 // Provide additional chance to the second-highest bowler
-                declareWinner();
-                endGame();
+                if(!additionalThrow){
+                    declareWinner();
+                    endGame();
+                }
             }
 
             try {
@@ -237,6 +244,7 @@ public class Lane extends Thread implements PinsetterObserver {
 
     private void declareWinner() {
         if(party.getMembers().size() < 2 ){
+            System.out.println("Winner: "+ party.getMembers().get(0).getNickName());
             return ;
         }
 
@@ -256,14 +264,22 @@ public class Lane extends Thread implements PinsetterObserver {
         }
         Random random = new Random();
         int pinsDown = random.nextInt(11);
-        int firstHighestScore = cumulScores[firstHighestIndex][9];
-        int secondHighestScore = cumulScores[secondHighestIndex][9] + pinsDown;
+
+        int firstHighestScore = cumulScores[firstHighestIndex][noOfFrames-1];
+        int secondHighestScore = cumulScores[secondHighestIndex][noOfFrames-1] + pinsDown;
 
         if(firstHighestScore == secondHighestScore){
             tieBreak();
         }
         else if(secondHighestScore > firstHighestScore){
-            additionalChance();
+            try {
+                additionalChance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            System.out.println("Winner: " + party.getMembers().get(firstHighestIndex).getNickName());
         }
     }
 
@@ -291,13 +307,20 @@ public class Lane extends Thread implements PinsetterObserver {
                 winnerIndex = firstHighestIndex;
             }
         }
+        System.out.println("Winner: " + party.getMembers().get(winnerIndex).getNickName());
     }
 
-    private void additionalChance() {
+    private void additionalChance() throws Exception {
         // Another 3 frames of bowling between first and second-highest player
-        Vector<Bowler> bowlers = new Vector<>();
-        bowlers.add(party.getMembers().get(firstHighestIndex));
-        bowlers.add(party.getMembers().get(secondHighestIndex));
+        Vector<String> bowlers = new Vector<>();
+        bowlers.add(party.getMembers().get(firstHighestIndex).getNickName());
+        bowlers.add(party.getMembers().get(secondHighestIndex).getNickName());
+
+        ControlDesk additionalDesk = new ControlDesk(1, 3, true);
+        ControlDeskView additionalDeskView = new ControlDeskView(additionalDesk, 2);
+        additionalDesk.subscribe(additionalDeskView);
+
+        additionalDesk.addPartyQueue(bowlers);
     }
 
     private void checkIfHalted() {
@@ -324,7 +347,7 @@ public class Lane extends Thread implements PinsetterObserver {
             }
 
             // check two gutters
-            if (frameNumber == 9) {
+            if (frameNumber == noOfFrames-1) {
                 finalScores[bowlIndex][gameNumber] = cumulScores[bowlIndex][9];
 
                 try {
@@ -344,7 +367,7 @@ public class Lane extends Thread implements PinsetterObserver {
             resetBowlerIterator();
             bowlIndex = 0;
             gutterThrow = false;
-            if (frameNumber > 9) {
+            if (frameNumber > noOfFrames-1) {
                 gameFinished = true;
                 gameNumber++;
             }

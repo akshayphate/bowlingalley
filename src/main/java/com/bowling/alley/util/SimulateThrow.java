@@ -147,7 +147,7 @@ public class SimulateThrow extends javax.swing.JFrame {
             System.out.print("");
         }
 
-        System.out.println(this.skill);
+//        System.out.println(this.skill);
         this.hasBowled = false;
         return this.skill;
     }
@@ -162,7 +162,7 @@ public class SimulateThrow extends javax.swing.JFrame {
 
         this.jLabel1.setText("Lane : "+currentLaneNumber);
 
-        System.out.println(this.skill);
+//        System.out.println(this.skill);
         return this.skill;
     }
 

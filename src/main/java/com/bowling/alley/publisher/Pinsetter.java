@@ -168,7 +168,7 @@ public class Pinsetter implements ActionListener
 
 		// 0.7
 
-		System.out.println(skill);
+		// System.out.println(skill);
 		// double skill = (new Scanner(System.in)).nextDouble();
 		for (int i=0; i <= 9; i++)
 		{

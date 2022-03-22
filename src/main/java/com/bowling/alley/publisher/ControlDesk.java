@@ -91,7 +91,7 @@ public class ControlDesk extends Thread
 
 		for (int i = 0; i < numLanes; i++)
 		{
-			lanes.add(new Lane());
+			lanes.add(new Lane(numFrames, additionalThrow));
 		}
 
 		this.start();

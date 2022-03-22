@@ -63,17 +63,32 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 		this.maxMembers = maxMembers;
 		int numLanes = controlDesk.getNumLanes();
 		int numFrames = controlDesk.getNumFrames();
+		boolean additionalThrow = controlDesk.getAdditionalThrow();
+
 
 		initWindow();
 
 		// Controls Panel
-		JPanel controlsPanel = createControlsPanel();
+		JPanel controlsPanel;
+		if(!additionalThrow){
+			controlsPanel = createControlsPanel();
+		}
+		else{
+			controlsPanel = new JPanel();
+		}
 
 		// Lane Status Panel
 		JPanel laneStatusPanel = createLaneStatusPanel(numLanes, numFrames);
 
 		// Party Queue Panel
-		JPanel partyPanel = createPartyPanel();
+		JPanel partyPanel ;
+		if(!additionalThrow){
+			partyPanel = createPartyPanel();
+		}
+		else{
+			partyPanel = new JPanel();
+		}
+
 
 		// Clean up main panel
 		createMainPanel(controlsPanel, laneStatusPanel, partyPanel);
