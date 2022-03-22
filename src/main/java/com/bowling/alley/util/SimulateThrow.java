@@ -128,7 +128,7 @@ public class SimulateThrow extends javax.swing.JFrame {
     
     public double getSkill() {
         while (!hasBowled) {
-            System.out.println("waiting!!");
+            System.out.print("");
         }
 
         System.out.println(this.skill);
@@ -140,7 +140,7 @@ public class SimulateThrow extends javax.swing.JFrame {
         if (!this.isVisible())
             this.setVisible(true);
         while (!hasBowled) {
-            System.out.println("waiting!!");
+            System.out.print("");
         }
 
 
