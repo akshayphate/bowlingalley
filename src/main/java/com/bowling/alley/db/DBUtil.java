@@ -328,15 +328,16 @@ public class DBUtil {
         for(int i=0;i<nicks_score.size();i++)
         {
             int bow_strikes = getStrikesOfBowlerScore(nicks_score.get(i),score);
+            nicks_strikes = new Vector<String>();
             if( bow_strikes > strikes)
             {
-
                 nicks_strikes = new Vector<String>();
                 strikes=bow_strikes;
                 nicks_strikes.add(nicks_score.get(i));
             }
-            else if(bow_strikes==strikes)
+            else if(bow_strikes==strikes) {
                 nicks_strikes.add(nicks_score.get(i));
+            }
             System.out.println(""+bow_strikes);
         }
 

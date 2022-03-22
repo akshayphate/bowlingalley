@@ -43,7 +43,7 @@ import com.bowling.alley.publisher.Lane;
 public class ControlDeskView implements ActionListener, ControlDeskObserver
 {
 
-	private JButton addParty, finished, assign;
+	private JButton addParty, finished, assign, queries;
 	private JFrame win;
 	private JList<String> partyList;
 
@@ -121,6 +121,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 		controlsPanel.setBorder(new TitledBorder("Controls"));
 
 		addParty = createButton("Add Party", controlsPanel);
+		queries = createButton("Queries", controlsPanel);
 		finished = createButton("Finished", controlsPanel);
 
 		return controlsPanel;
@@ -201,6 +202,15 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver
 		else if (e.getSource().equals(assign))
 		{
 			controlDesk.assignLane();
+		}
+		else if(e.getSource().equals(queries))
+		{
+			System.out.println("Queries");
+			try {
+				new QueriesView();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 		else if (e.getSource().equals(finished))
 		{
