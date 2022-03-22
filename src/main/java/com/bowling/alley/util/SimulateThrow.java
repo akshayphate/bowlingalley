@@ -25,7 +25,6 @@ public class SimulateThrow extends javax.swing.JFrame {
         this.jLabel1.setText("Lane : "+laneNumber);
         
     }
-    
     public SimulateThrow() {
         initComponents();
     }
