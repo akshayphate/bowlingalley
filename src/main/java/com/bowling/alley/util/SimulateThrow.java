@@ -30,6 +30,25 @@ public class SimulateThrow extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void initComp() {
+        jSeparator1 = new JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jSlider1 = new javax.swing.JSlider();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        //jLabel1.setText("jLabel1");
+        jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setText("Play");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        this.add(jButton1);
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

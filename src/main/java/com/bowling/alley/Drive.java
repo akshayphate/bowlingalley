@@ -1,5 +1,6 @@
 package com.bowling.alley;
 
+import com.bowling.alley.db.DBInit;
 import com.bowling.alley.model.Alley;
 import com.bowling.alley.publisher.ControlDesk;
 import com.bowling.alley.view.ControlDeskView;
@@ -10,7 +11,7 @@ import java.util.Properties;
 
 public class Drive {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		String resourceName = "application.properties"; // could also be a constant
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -29,6 +30,11 @@ public class Drive {
 
 		ControlDeskView cdv = new ControlDeskView( controlDesk, maxPatronsPerParty);
 		controlDesk.subscribe( cdv );
+
+//		 Initializing DB
+//		DBInit dbInit = new DBInit();
+//		dbInit.createDatabase();
+//		dbInit.createTables();
 
 	}
 }

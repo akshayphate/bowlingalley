@@ -31,7 +31,7 @@ public class BowlerFile
 {
 
 	/** The location of the bowelr database */
-	private static String BOWLER_DAT = "/home/akshay/IdeaProjects/bowlingalley/src/main/java/BOWLERS.DAT";
+	private static String BOWLER_DAT = "src/main/java/BOWLERS.DAT";
 
 	/**
 	 * Retrieves bowler information from the database and returns a Bowler objects with populated fields.
